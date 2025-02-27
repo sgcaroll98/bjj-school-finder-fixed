@@ -1,0 +1,810 @@
+/* School Profile Styles */
+.school-page {
+    background-color: #f8f9fa;
+}
+
+.school-profile {
+    padding-top: 5rem;
+}
+
+.content-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 2rem;
+}
+
+.main-content {
+    background-color: #ffffff;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Hero Section */
+.hero-section {
+    width: 100%;
+    height: 400px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/* School Info */
+.school-info {
+    padding: 2rem;
+}
+
+.school-name {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    color: var(--text);
+}
+
+.bio-section {
+    margin-bottom: 3rem;
+}
+
+.bio-section h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--text);
+}
+
+.bio-section p {
+    color: #4b5563;
+    line-height: 1.7;
+}
+
+/* Programs Section */
+.programs-section {
+    margin-bottom: 3rem;
+}
+
+.programs-section h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--text);
+}
+
+.programs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.program-card {
+    background-color: #f9fafb;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    border: 1px solid #f0f0f0;
+}
+
+.program-card h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--text);
+}
+
+.program-card p {
+    color: #6b7280;
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+/* Features Section */
+.features-section {
+    padding: 2rem;
+    border-top: 1px solid #f0f0f0;
+}
+
+.features-section h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--text);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+.feature-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1.25rem;
+    background-color: #f9fafb;
+    border-radius: 0.75rem;
+    border: 1px solid #f0f0f0;
+}
+
+.feature-item i {
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin-bottom: 0.75rem;
+}
+
+.feature-item span {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #4b5563;
+}
+
+/* Instructors Section */
+.instructors-section {
+    padding: 2rem;
+    border-top: 1px solid #f0f0f0;
+}
+
+.instructors-section h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--text);
+}
+
+.instructors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.instructor-card {
+    display: flex;
+    background-color: #f9fafb;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    border: 1px solid #f0f0f0;
+}
+
+.instructor-image {
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+}
+
+.instructor-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.instructor-info {
+    padding: 1rem;
+    flex-grow: 1;
+}
+
+.instructor-info h3 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    color: var(--text);
+}
+
+.instructor-rank {
+    color: var(--primary);
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.instructor-bio {
+    color: #6b7280;
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+/* Schedule Section */
+.schedule-section {
+    padding: 2rem;
+    border-top: 1px solid #f0f0f0;
+}
+
+.schedule-section h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--text);
+}
+
+.schedule-tabs {
+    border: 1px solid #f0f0f0;
+    border-radius: 0.75rem;
+    overflow: hidden;
+}
+
+.tab-buttons {
+    display: flex;
+    overflow-x: auto;
+    background-color: #f9fafb;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.tab-buttons button {
+    padding: 1rem 1.5rem;
+    background: none;
+    border: none;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #6b7280;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.tab-buttons button.active {
+    color: var(--primary);
+    box-shadow: inset 0 -2px 0 var(--primary);
+}
+
+.tab-buttons button:hover {
+    color: var(--text);
+}
+
+.tab-content {
+    padding: 1.5rem;
+}
+
+.schedule-day {
+    display: none;
+}
+
+.schedule-day.active {
+    display: block;
+}
+
+.schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.schedule-table th {
+    text-align: left;
+    padding: 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #6b7280;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.schedule-table td {
+    padding: 0.75rem;
+    font-size: 0.875rem;
+    color: #4b5563;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.no-classes {
+    color: #6b7280;
+    font-style: italic;
+    text-align: center;
+    padding: 2rem 0;
+}
+
+/* Gallery Section */
+.gallery-section {
+    padding: 2rem;
+    border-top: 1px solid #f0f0f0;
+}
+
+.gallery-section h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--text);
+}
+
+.photo-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.gallery-item {
+    border-radius: 0.5rem;
+    overflow: hidden;
+    height: 150px;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+/* Sidebar */
+.school-sidebar {
+    align-self: start;
+}
+
+.info-box {
+    background-color: #ffffff;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 1.5rem;
+}
+
+.info-box h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    padding: 1.5rem;
+    border-bottom: 1px solid #f0f0f0;
+    color: var(--text);
+}
+
+.contact-info {
+    padding: 1.5rem;
+}
+
+.contact-info p {
+    margin-bottom: 1rem;
+    color: #4b5563;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+}
+
+.contact-info p i {
+    color: var(--primary);
+    margin-top: 0.25rem;
+}
+
+.contact-info a {
+    color: #4b5563;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.contact-info a:hover {
+    color: var(--primary);
+}
+
+.map-container {
+    height: 200px;
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+.cta-buttons {
+    padding: 0 1.5rem 1.5rem;
+    display: grid;
+    gap: 0.75rem;
+}
+
+.directions-btn, .call-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.directions-btn {
+    background-color: var(--primary);
+    color: #ffffff;
+}
+
+.directions-btn:hover {
+    background-color: #4338ca;
+}
+
+.call-btn {
+    background-color: #10b981;
+    color: #ffffff;
+}
+
+.call-btn:hover {
+    background-color: #059669;
+}
+
+.premium-badge {
+    background-color: #fbbf24;
+    color: #ffffff;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+/* Plan Badge */
+.school-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.plan-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.plan-badge.basic {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.plan-badge.premium {
+  background-color: #f59e0b;
+  color: white;
+}
+
+/* Owner Actions */
+.owner-actions {
+  margin-bottom: 1.5rem;
+}
+
+.edit-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--primary);
+  color: white;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.edit-button:hover {
+  background-color: #4338ca;
+}
+
+/* Promotional Banner */
+.promotional-banner {
+  margin-top: 1rem;
+  background-color: #f59e0b;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  color: white;
+}
+
+.banner-content {
+  text-align: center;
+}
+
+.banner-content h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.banner-cta {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 1.5rem;
+  background-color: white;
+  color: #f59e0b;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.banner-cta:hover {
+  background-color: #f8fafc;
+  transform: translateY(-2px);
+}
+
+/* Tabs Section */
+.tabs-section {
+  margin: 2rem 0;
+}
+
+.tabs-header {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.tab-button {
+  padding: 0.75rem 1.5rem;
+  background-color: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tab-button:hover {
+  color: var(--primary);
+}
+
+.tab-button.active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+
+.tab-content {
+  padding: 1rem 0;
+}
+
+/* Schedule Tab */
+.schedule-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.schedule-day h4 {
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.schedule-day ul {
+  list-style: none;
+}
+
+.schedule-day li {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.class-time {
+  font-weight: 600;
+  display: block;
+}
+
+.class-name {
+  display: block;
+  color: var(--primary);
+}
+
+.class-instructor {
+  display: block;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+/* Instructors Tab */
+.instructors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.instructor-card {
+  background-color: white;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s;
+}
+
+.instructor-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.instructor-image {
+  height: 200px;
+  overflow: hidden;
+}
+
+.instructor-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.instructor-card h4 {
+  padding: 1rem 1rem 0.5rem;
+  margin: 0;
+}
+
+.instructor-rank {
+  padding: 0 1rem;
+  color: var(--primary);
+  font-weight: 600;
+  margin: 0 0 0.5rem;
+}
+
+.instructor-bio {
+  padding: 0 1rem 1rem;
+  margin: 0;
+  font-size: 0.875rem;
+  color: #4b5563;
+}
+
+/* Testimonials Tab */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.testimonial-card {
+  background-color: white;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.testimonial-content {
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.testimonial-author {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid #f3f4f6;
+  padding-top: 1rem;
+}
+
+.author-name {
+  font-weight: 600;
+  margin: 0;
+}
+
+.author-rank {
+  color: #6b7280;
+  margin: 0;
+}
+
+/* Photo Gallery */
+.photo-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.gallery-item {
+  position: relative;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+.photo-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 0.5rem;
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+/* Social Media Section */
+.social-section {
+  margin: 2rem 0;
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  color: white;
+  font-size: 1.25rem;
+  transition: all 0.2s;
+}
+
+.social-link:hover {
+  transform: translateY(-3px);
+}
+
+.social-link.instagram {
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+}
+
+.social-link.facebook {
+  background-color: #1877f2;
+}
+
+.social-link.youtube {
+  background-color: #ff0000;
+}
+
+.social-link.twitter {
+  background-color: #1da1f2;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .school-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .tabs-header {
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+  }
+  
+  .schedule-grid,
+  .instructors-grid,
+  .testimonials-grid,
+  .photo-gallery {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+    .content-wrapper {
+        grid-template-columns: 1fr;
+    }
+    
+    .school-sidebar {
+        order: -1;
+    }
+    
+    .hero-section {
+        height: 250px;
+    }
+    
+    .school-name {
+        font-size: 2rem;
+    }
+    
+    .programs-grid, .features-grid, .instructors-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .tab-buttons {
+        flex-wrap: wrap;
+    }
+    
+    .tab-buttons button {
+        flex-grow: 1;
+        text-align: center;
+    }
+}
