@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentPhrase = 0;
     let currentCharacter = 0;
     let isDeleting = false;
-    let typingSpeed = 150;
+    let typingSpeed = 60; // Faster typing speed
     
     function type() {
         const currentText = phrases[currentPhrase];
@@ -34,22 +34,22 @@ document.addEventListener('DOMContentLoaded', function() {
         // If word is complete, start deleting after delay
         if (!isDeleting && currentCharacter === currentText.length) {
             isDeleting = true;
-            typingSpeed = 800; // Pause before deleting
+            typingSpeed = 300; // Shorter pause before deleting
         }
         
         // If deletion is complete, move to next word
         if (isDeleting && currentCharacter === 0) {
             isDeleting = false;
-            typingSpeed = 150;
+            typingSpeed = 60; // Faster typing speed
             currentPhrase = (currentPhrase + 1) % phrases.length;
         }
         
         // Set dynamic speed for more natural typing
-        const speed = isDeleting ? 80 : typingSpeed;
+        const speed = isDeleting ? 30 : typingSpeed; // Faster deletion speed
         
         setTimeout(type, speed);
     }
     
-    // Start typing animation
-    setTimeout(type, 1000);
+    // Start typing animation immediately
+    setTimeout(type, 500);
 });

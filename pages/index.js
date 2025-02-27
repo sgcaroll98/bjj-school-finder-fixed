@@ -88,17 +88,17 @@ export default function Home() {
       <section id="browse-section" className="browse-section">
         <div className="container">
           <div className="browse-tiles">
-            <Link href="/schools" className="browse-tile">
+            <Link href="/schools?filter=categories" className="browse-tile">
               <i className="fas fa-dumbbell"></i>
               <h2>Browse by Categories</h2>
               <p>Find schools by training style and features</p>
             </Link>
-            <Link href="/schools" className="browse-tile">
-              <i className="fas fa-city"></i>
+            <Link href="/schools?filter=states" className="browse-tile">
+              <i className="fas fa-building"></i>
               <h2>Browse by States</h2>
               <p>Explore schools in your area</p>
             </Link>
-            <Link href="/schools" className="browse-tile">
+            <Link href="/schools?filter=popular" className="browse-tile">
               <i className="fas fa-star"></i>
               <h2>Popular Cities</h2>
               <p>Discover top Jiujitsu destinations</p>
