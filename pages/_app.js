@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Script
-        src="https://kit.fontawesome.com/a076d05399.js"
+        src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"
         crossOrigin="anonymous"
       />
       <AuthProvider>

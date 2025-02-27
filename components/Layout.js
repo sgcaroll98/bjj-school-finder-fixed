@@ -37,42 +37,26 @@ export default function Layout({ children }) {
       <footer className="site-footer">
         <div className="footer-container">
           <div className="footer-section">
-            <h3>Jiujitsu School Finder</h3>
-            <p>Find the best Brazilian Jiujitsu schools near you. Search, compare, and connect with Jiujitsu academies.</p>
-            <div className="footer-social">
-              <a href="#" className="social-icon"><i className="fab fa-facebook-f"></i></a>
-              <a href="#" className="social-icon"><i className="fab fa-twitter"></i></a>
-              <a href="#" className="social-icon"><i className="fab fa-instagram"></i></a>
-              <a href="#" className="social-icon"><i className="fab fa-youtube"></i></a>
-            </div>
-          </div>
-          
-          <div className="footer-section">
-            <h3>Quick Links</h3>
-            <ul className="footer-links">
-              <li><Link href="/">Home</Link></li>
-              <li><Link href="/schools">Find Schools</Link></li>
-              <li><Link href="/add-school">Add Your School</Link></li>
+            <h4>Quick Links</h4>
+            <ul>
               <li><Link href="/about">About Us</Link></li>
               <li><Link href="/contact">Contact</Link></li>
-            </ul>
-          </div>
-          
-          <div className="footer-section">
-            <h3>Resources</h3>
-            <ul className="footer-links">
-              <li><Link href="/blog">Blog</Link></li>
-              <li><Link href="/faq">FAQ</Link></li>
               <li><Link href="/privacy">Privacy Policy</Link></li>
               <li><Link href="/terms">Terms of Service</Link></li>
             </ul>
           </div>
           
+          <div className="footer-section main-footer">
+            <h3>Jiujitsu School Finder</h3>
+            <p>Find your perfect BJJ academy and start your journey today.</p>
+          </div>
+          
           <div className="footer-section">
-            <h3>Contact Us</h3>
-            <ul className="footer-links">
-              <li><i className="fas fa-envelope"></i> info@jiujitsuschools.com</li>
-              <li><i className="fas fa-phone"></i> (123) 456-7890</li>
+            <h4>For School Owners</h4>
+            <ul>
+              <li><Link href="/claim">Claim Your School</Link></li>
+              <li><Link href="/advertise">Advertise With Us</Link></li>
+              <li><Link href="/pricing">Pricing</Link></li>
             </ul>
           </div>
         </div>
