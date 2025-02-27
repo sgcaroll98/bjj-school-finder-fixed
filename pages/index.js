@@ -1,41 +1,50 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
 import { supabase } from '../lib/supabaseClient'
 import SchoolCard from '../components/SchoolCard'
 
 export default function Home() {
-  const [loading, setLoading] = useState(true)
-  const [changingText, setChangingText] = useState('near you')
-  const [typewriterEffect, setTypewriterEffect] = useState(true)
+  const router = useRouter();
+  const [changingText, setChangingText] = useState('for beginners');
+  const textOptions = ['for beginners', 'for advanced training', 'for competition', 'with No-Gi classes', 'with kids programs'];
+  const [currentTextIndex, setCurrentTextIndex] = useState(0);
+  const [displayText, setDisplayText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [typingSpeed, setTypingSpeed] = useState(150);
 
+  // Typing animation effect
   useEffect(() => {
-    setLoading(false)
+    const textToType = textOptions[currentTextIndex];
     
-    // Set up the changing text animation with typewriter effect
-    const texts = ['near you', 'for all levels', 'with top instructors', 'for competition'];
-    let currentIndex = 0;
-
-    const interval = setInterval(() => {
-      // Hide text first (simulating deletion)
-      setTypewriterEffect(false);
-      
-      // After a short delay, change text and show it again (simulating typing)
-      setTimeout(() => {
-        currentIndex = (currentIndex + 1) % texts.length;
-        setChangingText(texts[currentIndex]);
-        setTypewriterEffect(true);
-      }, 500);
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, [])
+    const timeout = setTimeout(() => {
+      if (!isDeleting) {
+        setDisplayText(textToType.substring(0, displayText.length + 1));
+        
+        if (displayText.length === textToType.length) {
+          setIsDeleting(true);
+          setTypingSpeed(800); // pause before deleting
+        }
+      } else {
+        setDisplayText(textToType.substring(0, displayText.length - 1));
+        
+        if (displayText.length === 0) {
+          setIsDeleting(false);
+          setTypingSpeed(150);
+          setCurrentTextIndex((currentTextIndex + 1) % textOptions.length);
+        }
+      }
+    }, typingSpeed);
+    
+    return () => clearTimeout(timeout);
+  }, [displayText, isDeleting, currentTextIndex, textOptions, typingSpeed]);
 
   return (
     <div>
       <Head>
-        <title>Jiujitsu School Finder - Find Your Perfect Brazilian Jiujitsu School</title>
-        <meta name="description" content="Find the best Brazilian Jiujitsu schools near you. Search, compare, and connect with Jiujitsu academies." />
+        <title>BJJ School Finder | Find Your Perfect Brazilian Jiujitsu School</title>
+        <meta name="description" content="Find the best Brazilian Jiujitsu schools near you. Search, compare, and connect with jiujitsu academies." />
         <link rel="icon" href="/favicon.ico" />
         <style jsx>{`
           #hero {
@@ -60,17 +69,6 @@ export default function Home() {
             position: relative;
             z-index: 2;
           }
-          
-          .typewriter {
-            display: inline-block;
-            overflow: hidden;
-            animation: typing 3.5s steps(40, end);
-          }
-          
-          @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-          }
         `}</style>
       </Head>
 
@@ -78,7 +76,7 @@ export default function Home() {
         <h1>Find Your Perfect Jiujitsu School</h1>
         <p>
           <span className="animated-text-line">
-            Find local Jiujitsu academies <span id="changing-text" className={typewriterEffect ? 'typewriter' : ''}>{changingText}</span>
+            Find local Jiujitsu academies <span id="changing-text">{displayText}</span>
           </span>
         </p>
         <div className="search-container">
@@ -109,51 +107,75 @@ export default function Home() {
         </div>
       </section>
       
-      <section id="blog-section" className="blog-section">
-        <div className="container">
+      <section id="blog-posts" className="blog-posts-section">
+        <div className="container text-center">
           <div className="section-header text-center">
-            <h2>Latest Articles</h2>
-            <p>News and resources from the BJJ community</p>
+            <h2>Latest from Our Blog</h2>
+            <p>Stay updated with Jiujitsu news, tips, and community highlights</p>
           </div>
-          
-          <div className="blog-grid">
-            <div className="blog-card">
-              <div className="blog-image">
-                <img src="/images/submission-bg.jpg" alt="BJJ Techniques" />
-              </div>
+          <div className="blog-posts-grid">
+            <article className="blog-card" data-category="Technique">
+              <img src="/images/submission-bg.jpg" alt="Guard passing techniques" className="blog-image" />
               <div className="blog-content">
-                <div className="blog-category">Techniques</div>
-                <h3>Essential Submissions for Beginners</h3>
-                <p>Learn the fundamental submission techniques that every BJJ practitioner should know.</p>
-                <a href="#" className="read-more">Read More</a>
+                <span className="blog-category">Technique</span>
+                <h3 className="blog-title">5 Guard Passing Techniques Every Jiujitsu Student Should Know</h3>
+                <p className="blog-excerpt">Master these fundamental guard passes to improve your top game and increase your submission success rate.</p>
+                <div className="blog-footer">
+                  <div className="blog-author">
+                    <img src="https://i.pravatar.cc/150?img=11" alt="Author" className="author-avatar" />
+                    <div className="author-info">
+                      <span className="author-name">Marcus Silva</span>
+                      <span className="blog-date">Feb 19, 2025</span>
+                    </div>
+                  </div>
+                  <a href="#" className="read-more">Read More <i className="fas fa-arrow-right"></i></a>
+                </div>
               </div>
-            </div>
-            
-            <div className="blog-card">
-              <div className="blog-image">
-                <img src="/images/submission-bg.jpg" alt="BJJ Training" />
-              </div>
+            </article>
+
+            <article className="blog-card" data-category="Competition">
+              <img src="/images/submission-bg.jpg" alt="Competition preparation" className="blog-image" />
               <div className="blog-content">
-                <div className="blog-category">Training</div>
-                <h3>How to Choose the Right BJJ School</h3>
-                <p>Tips for finding the perfect Brazilian Jiujitsu academy for your training goals.</p>
-                <a href="#" className="read-more">Read More</a>
+                <span className="blog-category">Competition</span>
+                <h3 className="blog-title">Mental Preparation: The Key to Competition Success</h3>
+                <p className="blog-excerpt">Learn proven strategies to develop mental toughness and overcome competition anxiety from top Jiujitsu competitors.</p>
+                <div className="blog-footer">
+                  <div className="blog-author">
+                    <img src="https://i.pravatar.cc/150?img=9" alt="Author" className="author-avatar" />
+                    <div className="author-info">
+                      <span className="author-name">Ana Santos</span>
+                      <span className="blog-date">Feb 17, 2025</span>
+                    </div>
+                  </div>
+                  <a href="#" className="read-more">Read More <i className="fas fa-arrow-right"></i></a>
+                </div>
               </div>
-            </div>
-            
-            <div className="blog-card">
-              <div className="blog-image">
-                <img src="/images/submission-bg.jpg" alt="BJJ Lifestyle" />
-              </div>
+            </article>
+
+            <article className="blog-card" data-category="Community">
+              <img src="/images/submission-bg.jpg" alt="Jiujitsu training partners" className="blog-image" />
               <div className="blog-content">
-                <div className="blog-category">Lifestyle</div>
-                <h3>BJJ and Mental Health: The Hidden Benefits</h3>
-                <p>Discover how Brazilian Jiujitsu can improve your mental wellbeing and reduce stress.</p>
-                <a href="#" className="read-more">Read More</a>
+                <span className="blog-category">Community</span>
+                <h3 className="blog-title">Building a Supportive Jiujitsu Training Community</h3>
+                <p className="blog-excerpt">Discover how to create and nurture a positive training environment that helps everyone grow in their jiujitsu journey.</p>
+                <div className="blog-footer">
+                  <div className="blog-author">
+                    <img src="https://i.pravatar.cc/150?img=3" alt="Author" className="author-avatar" />
+                    <div className="author-info">
+                      <span className="author-name">David Chen</span>
+                      <span className="blog-date">Feb 15, 2025</span>
+                    </div>
+                  </div>
+                  <a href="#" className="read-more">Read More <i className="fas fa-arrow-right"></i></a>
+                </div>
               </div>
-            </div>
+            </article>
           </div>
         </div>
+      </section>
+
+      <section id="schools-list">
+        {/* School cards will be dynamically added here */}
       </section>
     </div>
   )

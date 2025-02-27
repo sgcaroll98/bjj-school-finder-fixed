@@ -2,19 +2,22 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { useAuth } from '../contexts/AuthContext'
 
-export default function Layout({ children }) {
+export default function Layout({ title, keywords, description, children }) {
   const { user } = useAuth()
   
   return (
     <>
       <Head>
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <meta name="keywords" content={keywords} />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
       </Head>
       
       <header>
         <nav>
-          <Link href="/" className="logo">Jiujitsu School Finder</Link>
+          <div className="logo">Jiujitsu School Finder</div>
           <div className="nav-links">
             <Link href="/">Home</Link>
             <Link href="/schools">Schools</Link>

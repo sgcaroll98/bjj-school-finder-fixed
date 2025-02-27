@@ -15,6 +15,12 @@ function MyApp({ Component, pageProps }) {
         src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"
         crossOrigin="anonymous"
       />
+      {router.pathname === '/' && (
+        <Script
+          src="/scripts/textAnimation.js"
+          strategy="afterInteractive"
+        />
+      )}
       <AuthProvider>
         <Layout>
           <Component {...pageProps} />
