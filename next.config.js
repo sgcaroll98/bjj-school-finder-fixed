@@ -7,7 +7,7 @@ const nextConfig = {
       'images.unsplash.com', 
       'storage.googleapis.com',
       'storage.supabase.co',
-      'your-supabase-url.supabase.co'
+      'ahu1moxybzcsyhqbn1v1.supabase.co'
     ],
   },
   // Explicitly disable the App Router
