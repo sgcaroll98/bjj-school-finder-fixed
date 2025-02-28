@@ -33,7 +33,7 @@ export default function Home() {
     let charIndex = 0;
     let isDeleting = false;
     let typingSpeed = 80; // ms per character when typing
-    let deletingSpeed = 40; // ms per character when deleting
+    let deletingSpeed = 80; // Even slower deletion for smoother animation
     let pauseEnd = 1500; // pause when phrase is fully typed
     let pauseStart = 500; // pause when phrase is deleted before typing next
     
@@ -43,8 +43,8 @@ export default function Home() {
       
       // Set display text based on current state
       if (isDeleting) {
-        // Deleting characters
-        setDisplayText(currentPhrase.substring(0, charIndex - 1));
+        // Deleting characters - do one at a time with consistent speed
+        setDisplayText(prev => prev.substring(0, prev.length - 1));
         charIndex--;
       } else {
         // Adding characters
@@ -56,13 +56,13 @@ export default function Home() {
       let timeout;
       
       // If typing and reached end of phrase
-      if (!isDeleting && charIndex === currentPhrase.length) {
+      if (!isDeleting && charIndex >= currentPhrase.length) {
         // Pause at the end before deleting
         timeout = pauseEnd;
         isDeleting = true;
       } 
       // If deleting and reached beginning of phrase
-      else if (isDeleting && charIndex === 0) {
+      else if (isDeleting && charIndex <= 0) {
         // Move to next phrase
         isDeleting = false;
         phraseIndex++;
