@@ -8,50 +8,67 @@ import SchoolCard from '../components/SchoolCard'
 export default function Home() {
   const router = useRouter();
   const [displayText, setDisplayText] = useState('');
-  const [isDeleting, setIsDeleting] = useState(false);
+  const [isTyping, setIsTyping] = useState(true);
   const [loopNum, setLoopNum] = useState(0);
   
   // Animation phrases
   const phrases = [
-    'for beginners',
-    'for advanced training',
-    'for competition',
-    'with No-Gi classes',
-    'with kids programs'
+    "rated 5-stars by students...",
+    "with world-class instruction...",
+    "offering top-rated kids classes...",
+    "with championship-level training...",
+    "featuring elite competition teams...",
+    "known for technical excellence...",
+    "with highly experienced coaches...",
+    "recommended by top athletes...",
+    "with award-winning programs...",
+    "offering premium facilities...",
+    "with state-of-the-art training areas...",
+    "specializing in no-gi excellence...",
+    "featuring modern training methods...",
+    "with dedicated competition classes...",
+    "providing professional instruction..."
   ];
 
   useEffect(() => {
-    const handleTyping = () => {
-      const i = loopNum % phrases.length;
-      const fullText = phrases[i];
-
-      if (isDeleting) {
-        // Fast deletion - immediately clear text
-        setDisplayText('');
-        setIsDeleting(false);
-        setLoopNum(loopNum + 1);
-        // Wait a tiny bit before starting to type the next phrase
-        setTimeout(handleTyping, 100);
-      } else {
-        if (displayText.length < fullText.length) {
-          // Still typing
-          setDisplayText(fullText.substring(0, displayText.length + 1));
-          // Schedule next character typing
-          setTimeout(handleTyping, 40); // Fast typing
+    const typingSpeed = 50; // Speed of typing in milliseconds
+    const eraseSpeed = 30;  // Speed of erasing in milliseconds
+    const displayDuration = 2000; // How long to display the complete text
+    
+    let currentIndex = loopNum % phrases.length;
+    let currentText = displayText;
+    
+    const handleTextAnimation = () => {
+      const fullText = phrases[currentIndex];
+      
+      if (isTyping) {
+        // Typing animation
+        if (currentText.length < fullText.length) {
+          setDisplayText(fullText.substring(0, currentText.length + 1));
+          setTimeout(handleTextAnimation, typingSpeed);
         } else {
-          // Finished typing, pause before deletion
-          setIsDeleting(true);
-          setTimeout(handleTyping, 800); // Pause at word completion
+          // Text is complete, wait before erasing
+          setIsTyping(false);
+          setTimeout(handleTextAnimation, displayDuration);
+        }
+      } else {
+        // Erasing animation
+        if (currentText.length > 0) {
+          setDisplayText(currentText.substring(0, currentText.length - 1));
+          setTimeout(handleTextAnimation, eraseSpeed);
+        } else {
+          // Text is erased, move to next phrase
+          setIsTyping(true);
+          setLoopNum(loopNum + 1);
+          currentIndex = (loopNum + 1) % phrases.length;
+          setTimeout(handleTextAnimation, typingSpeed);
         }
       }
     };
-
-    // Start the typing effect
-    const timer = setTimeout(handleTyping, 200);
     
-    // Cleanup timer on unmount
+    const timer = setTimeout(handleTextAnimation, 200);
     return () => clearTimeout(timer);
-  }, [displayText, isDeleting, loopNum, phrases]);
+  }, [displayText, isTyping, loopNum, phrases]);
 
   return (
     <div>
@@ -113,7 +130,7 @@ export default function Home() {
             <Link href="/schools?filter=states" className="browse-tile">
               <div className="tile-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" fill="currentColor">
-                  <path d="M48 0C21.5 0 0 21.5 0 48V464c0 26.5 21.5 48 48 48h96V432c0-26.5 21.5-48 48-48s48 21.5 48 48v80h96c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48H48zM64 240c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V240zm112-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H176c-8.8 0-16-7.2-16-16V240c0-8.8 7.2-16 16-16zm80 16c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H272c-8.8 0-16-7.2-16-16V240zM80 96h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16zm80 16c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H176c-8.8 0-16-7.2-16-16V112zM272 96h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H272c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16z"/>
+                  <path d="M48 0C21.5 0 0 21.5 0 48V464c0 26.5 21.5 48 48 48h96V432c0-26.5 21.5-48 48-48s48 21.5 48 48v80h96c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48H48zM64 240c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V240c0-8.8 7.2-16 16-16zm112-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H176c-8.8 0-16-7.2-16-16V240c0-8.8 7.2-16 16-16zm80 16c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H272c-8.8 0-16-7.2-16-16V240zM80 96h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16zm80 16c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H176c-8.8 0-16-7.2-16-16V112zM272 96h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H272c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16z"/>
                 </svg>
               </div>
               <h2>Browse by States</h2>
