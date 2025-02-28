@@ -54,36 +54,18 @@ const statesList = [
   { name: 'Washington', abbr: 'WA' },
   { name: 'West Virginia', abbr: 'WV' },
   { name: 'Wisconsin', abbr: 'WI' },
-  { name: 'Wyoming', abbr: 'WY' }
+  { name: 'Wyoming', abbr: 'WY' },
+  { name: 'District of Columbia', abbr: 'DC' }
 ];
-
-// Group states by first letter for better organization
-const groupStatesByFirstLetter = (states) => {
-  const grouped = {};
-  
-  states.forEach(state => {
-    const firstLetter = state.name.charAt(0);
-    if (!grouped[firstLetter]) {
-      grouped[firstLetter] = [];
-    }
-    grouped[firstLetter].push(state);
-  });
-  
-  return grouped;
-};
 
 export default function States() {
   const [searchTerm, setSearchTerm] = useState('');
-  const [hoveredState, setHoveredState] = useState(null);
   
   // Filter states based on search term
   const filteredStates = statesList.filter(state => 
     state.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
     state.abbr.toLowerCase().includes(searchTerm.toLowerCase())
   );
-  
-  // Group filtered states by first letter
-  const groupedStates = groupStatesByFirstLetter(filteredStates);
   
   return (
     <Layout>
@@ -136,151 +118,54 @@ export default function States() {
             box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
           }
           
-          .states-list {
+          .states-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-          }
-          
-          .letter-group {
-            margin-bottom: 2rem;
-          }
-          
-          .letter-heading {
-            font-size: 1.5rem;
-            color: #4f46e5;
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid #e5e7eb;
-          }
-          
-          .state-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 1rem;
           }
           
-          .state-card {
-            position: relative;
-            background-color: white;
+          .state-button {
+            display: block;
+            background-color: #f3f4f6;
             border: 1px solid #e5e7eb;
             border-radius: 8px;
-            padding: 1rem;
+            padding: 1.25rem 1rem;
             text-align: center;
-            transition: all 0.2s ease;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            cursor: pointer;
-          }
-          
-          .state-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
-            border-color: #4f46e5;
-          }
-          
-          .state-name {
             font-size: 1.1rem;
             font-weight: 600;
             color: #333;
-            margin-bottom: 0.25rem;
-          }
-          
-          .state-abbr {
-            font-size: 0.9rem;
-            color: #666;
-            background-color: #f3f4f6;
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            display: inline-block;
-            margin-top: 0.5rem;
-          }
-          
-          .state-schools-count {
-            font-size: 0.8rem;
-            color: #4f46e5;
-            margin-top: 0.5rem;
-          }
-          
-          .tooltip {
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #4f46e5;
-            color: white;
-            padding: 0.5rem 0.75rem;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            z-index: 10;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.2s ease;
-            white-space: nowrap;
-          }
-          
-          .tooltip:before {
-            content: '';
-            position: absolute;
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            border-width: 6px;
-            border-style: solid;
-            border-color: transparent transparent #4f46e5 transparent;
-          }
-          
-          .state-card:hover .tooltip {
-            opacity: 1;
-            visibility: visible;
-          }
-          
-          .alpha-nav {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 0.5rem;
-            margin-bottom: 2rem;
-            padding: 1rem;
-            background-color: #f9fafb;
-            border-radius: 8px;
-          }
-          
-          .alpha-link {
-            display: inline-block;
-            width: 2rem;
-            height: 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            background-color: white;
-            border: 1px solid #e5e7eb;
-            border-radius: 4px;
-            color: #4f46e5;
             text-decoration: none;
-            transition: all 0.15s ease;
+            transition: all 0.2s ease;
           }
           
-          .alpha-link:hover {
+          .state-button:hover {
             background-color: #4f46e5;
             color: white;
             border-color: #4f46e5;
+            transform: translateY(-2px);
+          }
+          
+          .no-results {
+            text-align: center;
+            padding: 3rem 1rem;
+            background-color: #f9fafb;
+            border-radius: 8px;
+            grid-column: 1 / -1;
           }
           
           @media (max-width: 768px) {
-            .states-list {
-              grid-template-columns: 1fr;
-            }
-            
-            .state-grid {
-              grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            .states-grid {
+              grid-template-columns: repeat(2, 1fr);
             }
             
             .page-title {
               font-size: 2rem;
+            }
+          }
+          
+          @media (max-width: 480px) {
+            .states-grid {
+              grid-template-columns: 1fr;
             }
           }
         `}</style>
@@ -304,53 +189,20 @@ export default function States() {
           />
         </div>
         
-        {filteredStates.length > 0 && (
-          <div className="alpha-nav">
-            {Object.keys(groupedStates).sort().map(letter => (
-              <a href={`#${letter}`} className="alpha-link" key={letter}>
-                {letter}
-              </a>
+        {filteredStates.length > 0 ? (
+          <div className="states-grid">
+            {filteredStates.map(state => (
+              <Link 
+                href={`/schools?state=${state.abbr}`} 
+                key={state.abbr}
+                className="state-button"
+              >
+                {state.name}
+              </Link>
             ))}
           </div>
-        )}
-        
-        <div className="states-list">
-          {Object.keys(groupedStates).sort().map(letter => (
-            <div className="letter-group" key={letter} id={letter}>
-              <h2 className="letter-heading">{letter}</h2>
-              <div className="state-grid">
-                {groupedStates[letter].map(state => (
-                  <Link 
-                    href={`/schools?state=${state.abbr}`} 
-                    key={state.abbr}
-                    passHref
-                  >
-                    <div 
-                      className="state-card"
-                      onMouseEnter={() => setHoveredState(state.abbr)}
-                      onMouseLeave={() => setHoveredState(null)}
-                    >
-                      <span className="state-name">{state.name}</span>
-                      <span className="state-abbr">{state.abbr}</span>
-                      <span className="state-schools-count">
-                        {/* This would be replaced with actual count from API */}
-                        15+ schools
-                      </span>
-                      {hoveredState === state.abbr && (
-                        <div className="tooltip">
-                          View BJJ schools in {state.name}
-                        </div>
-                      )}
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-        
-        {filteredStates.length === 0 && (
-          <div style={{ textAlign: 'center', padding: '3rem 1rem' }}>
+        ) : (
+          <div className="no-results">
             <p style={{ fontSize: '1.2rem', color: '#666' }}>
               No states found matching "{searchTerm}". Try a different search term.
             </p>
