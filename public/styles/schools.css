@@ -1,10 +1,9 @@
 /* Schools Page Styles */
 .schools-container {
-  background-color: #f9fafb;
-  min-height: 100vh;
-  padding: 0 2rem;
+  padding: 2rem;
   max-width: 1200px;
   margin: 0 auto;
+  min-height: 100vh;
 }
 
 /* Hero Section */
@@ -20,6 +19,7 @@
   align-items: center;
   padding: 0 2rem;
   position: relative;
+  text-align: center;
 }
 
 .schools-hero::before {
