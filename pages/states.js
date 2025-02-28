@@ -72,104 +72,7 @@ export default function States() {
       <Head>
         <title>Browse BJJ Schools by State | BJJ School Finder</title>
         <meta name="description" content="Explore Brazilian Jiu-Jitsu schools and academies across different states in the US." />
-        <style jsx>{`
-          .states-container {
-            padding: 2rem 1rem;
-            max-width: 1200px;
-            margin: 0 auto;
-          }
-          
-          .page-header {
-            text-align: center;
-            margin-bottom: 2rem;
-          }
-          
-          .page-title {
-            font-size: 2.5rem;
-            color: #333;
-            margin-bottom: 0.5rem;
-          }
-          
-          .page-subtitle {
-            font-size: 1.1rem;
-            color: #666;
-            max-width: 600px;
-            margin: 0 auto;
-          }
-          
-          .search-box {
-            max-width: 500px;
-            margin: 0 auto 2rem;
-            position: relative;
-          }
-          
-          .search-input {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 1rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-          }
-          
-          .search-input:focus {
-            outline: none;
-            border-color: #4f46e5;
-            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
-          }
-          
-          .states-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-          }
-          
-          .state-button {
-            display: block;
-            background-color: #f3f4f6;
-            border: 1px solid #e5e7eb;
-            border-radius: 8px;
-            padding: 1.25rem 1rem;
-            text-align: center;
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #333;
-            text-decoration: none;
-            transition: all 0.2s ease;
-          }
-          
-          .state-button:hover {
-            background-color: #4f46e5;
-            color: white;
-            border-color: #4f46e5;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-          }
-          
-          .no-results {
-            text-align: center;
-            padding: 3rem 1rem;
-            background-color: #f9fafb;
-            border-radius: 8px;
-            grid-column: 1 / -1;
-          }
-          
-          @media (max-width: 768px) {
-            .states-grid {
-              grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .page-title {
-              font-size: 2rem;
-            }
-          }
-          
-          @media (max-width: 480px) {
-            .states-grid {
-              grid-template-columns: 1fr;
-            }
-          }
-        `}</style>
+        <link rel="stylesheet" href="/styles/states.css" />
       </Head>
       
       <div className="states-container">
@@ -204,7 +107,7 @@ export default function States() {
           </div>
         ) : (
           <div className="no-results">
-            <p style={{ fontSize: '1.2rem', color: '#666' }}>
+            <p className="no-results-text">
               No states found matching "{searchTerm}". Try a different search term.
             </p>
           </div>
