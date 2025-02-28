@@ -58,7 +58,7 @@ const statesList = [
   { name: 'District of Columbia', abbr: 'DC' }
 ];
 
-const States = () => {
+export default function States() {
   const [searchTerm, setSearchTerm] = useState('');
   
   // Filter states based on search term
@@ -68,53 +68,54 @@ const States = () => {
   );
   
   return (
-    <Layout>
+    <div className="home-container">
       <Head>
         <title>Browse BJJ Schools by State | BJJ School Finder</title>
         <meta name="description" content="Explore Brazilian Jiu-Jitsu schools and academies across different states in the US." />
         <link rel="stylesheet" href="/styles/states.css" />
       </Head>
       
-      <div className="home-container">
-        <section id="hero" className="states-hero">
-          <h1>Browse BJJ Schools by State</h1>
-          <p>Find Brazilian Jiu-Jitsu schools and academies in your state or explore BJJ opportunities across the United States.</p>
-        </section>
-        
-        <div className="states-container">
-          <div className="search-box">
-            <input
-              type="text"
-              className="search-input"
-              placeholder="Search for a state..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-          </div>
-          
-          {filteredStates.length > 0 ? (
-            <div className="states-grid">
-              {filteredStates.map(state => (
-                <Link 
-                  href={`/schools?state=${state.abbr}`} 
-                  key={state.abbr}
-                  className="state-button"
-                >
-                  {state.name}
-                </Link>
-              ))}
-            </div>
-          ) : (
-            <div className="no-results">
-              <p className="no-results-text">
-                No states found matching "{searchTerm}". Try a different search term.
-              </p>
-            </div>
-          )}
+      <section id="hero" className="states-hero">
+        <h1>Browse BJJ Schools by State</h1>
+        <p>Find Brazilian Jiu-Jitsu schools and academies in your state or explore BJJ opportunities across the United States.</p>
+      </section>
+      
+      <div className="states-container">
+        <div className="search-box">
+          <input
+            type="text"
+            className="search-input"
+            placeholder="Search for a state..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
         </div>
+        
+        {filteredStates.length > 0 ? (
+          <div className="states-grid">
+            {filteredStates.map(state => (
+              <Link 
+                href={`/schools?state=${state.abbr}`} 
+                key={state.abbr}
+                className="state-button"
+              >
+                {state.name}
+              </Link>
+            ))}
+          </div>
+        ) : (
+          <div className="no-results">
+            <p className="no-results-text">
+              No states found matching "{searchTerm}". Try a different search term.
+            </p>
+          </div>
+        )}
       </div>
-    </Layout>
+    </div>
   );
 }
 
-export default States;
+// Use the Layout component from _app.js to avoid duplicate footers
+States.getLayout = function getLayout(page) {
+  return <Layout>{page}</Layout>;
+};
