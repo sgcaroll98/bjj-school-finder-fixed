@@ -143,6 +143,7 @@ export default function States() {
             color: white;
             border-color: #4f46e5;
             transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
           }
           
           .no-results {
