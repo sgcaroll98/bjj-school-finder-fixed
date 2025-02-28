@@ -9,6 +9,13 @@ import { AuthProvider } from '../contexts/AuthContext'
 function MyApp({ Component, pageProps }) {
   const router = useRouter()
   
+  // Check if the component has its own layout
+  const getLayout = Component.getLayout || ((page) => (
+    <Layout>
+      {page}
+    </Layout>
+  ))
+  
   return (
     <>
       <Script
@@ -19,12 +26,16 @@ function MyApp({ Component, pageProps }) {
         <Script
           src="/scripts/textAnimation.js"
           strategy="afterInteractive"
+          onLoad={() => {
+            console.log('Text animation script loaded successfully');
+          }}
+          onError={(e) => {
+            console.error('Error loading text animation script:', e);
+          }}
         />
       )}
       <AuthProvider>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        {getLayout(<Component {...pageProps} />)}
       </AuthProvider>
     </>
   )

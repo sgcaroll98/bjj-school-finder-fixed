@@ -1,80 +1,58 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 import { supabase } from '../lib/supabaseClient'
 import SchoolCard from '../components/SchoolCard'
 
 export default function Home() {
   const router = useRouter();
-  const [displayText, setDisplayText] = useState('');
-  const [isTyping, setIsTyping] = useState(true);
-  const [loopNum, setLoopNum] = useState(0);
   
-  // Animation phrases
-  const phrases = [
-    "rated 5-stars by students...",
-    "with world-class instruction...",
-    "offering top-rated kids classes...",
-    "with championship-level training...",
-    "featuring elite competition teams...",
-    "known for technical excellence...",
-    "with highly experienced coaches...",
-    "recommended by top athletes...",
-    "with award-winning programs...",
-    "offering premium facilities...",
-    "with state-of-the-art training areas...",
-    "specializing in no-gi excellence...",
-    "featuring modern training methods...",
-    "with dedicated competition classes...",
-    "providing professional instruction..."
-  ];
-
+  // Inline text animation as a backup
   useEffect(() => {
-    const typingSpeed = 50; // Speed of typing in milliseconds
-    const eraseSpeed = 30;  // Speed of erasing in milliseconds
-    const displayDuration = 2000; // How long to display the complete text
+    const changingText = document.getElementById('changing-text');
+    if (!changingText) return;
     
-    let currentIndex = loopNum % phrases.length;
-    let currentText = displayText;
+    const phrases = [
+      'rated 5-stars by students...',
+      'with world-class instruction...',
+      'offering top-rated kids classes...',
+      'with championship-level training...',
+      'featuring elite competition teams...',
+      'known for technical excellence...',
+      'with highly experienced coaches...',
+      'recommended by top athletes...',
+      'with award-winning programs...',
+      'offering premium facilities...',
+      'with state-of-the-art training areas...',
+      'specializing in no-gi excellence...',
+      'featuring modern training methods...',
+      'with dedicated competition classes...',
+      'providing professional instruction...'
+    ];
     
-    const handleTextAnimation = () => {
-      const fullText = phrases[currentIndex];
-      
-      if (isTyping) {
-        // Typing animation
-        if (currentText.length < fullText.length) {
-          setDisplayText(fullText.substring(0, currentText.length + 1));
-          setTimeout(handleTextAnimation, typingSpeed);
-        } else {
-          // Text is complete, wait before erasing
-          setIsTyping(false);
-          setTimeout(handleTextAnimation, displayDuration);
-        }
-      } else {
-        // Erasing animation
-        if (currentText.length > 0) {
-          setDisplayText(currentText.substring(0, currentText.length - 1));
-          setTimeout(handleTextAnimation, eraseSpeed);
-        } else {
-          // Text is erased, move to next phrase
-          setIsTyping(true);
-          setLoopNum(loopNum + 1);
-          currentIndex = (loopNum + 1) % phrases.length;
-          setTimeout(handleTextAnimation, typingSpeed);
-        }
-      }
-    };
+    let currentIndex = 0;
     
-    const timer = setTimeout(handleTextAnimation, 200);
-    return () => clearTimeout(timer);
-  }, [displayText, isTyping, loopNum, phrases]);
-
+    function updateText() {
+      changingText.textContent = phrases[currentIndex];
+      currentIndex = (currentIndex + 1) % phrases.length;
+    }
+    
+    // Set initial text
+    updateText();
+    
+    // Change text every 3 seconds
+    const interval = setInterval(updateText, 3000);
+    
+    return () => clearInterval(interval);
+  }, []);
+  
   return (
     <div>
       <Head>
-        <title>BJJ School Finder | Find Your Perfect Brazilian Jiujitsu School</title>
-        <meta name="description" content="Find the best Brazilian Jiujitsu schools near you. Search, compare, and connect with jiujitsu academies." />
+        <title>Jiujitsu School Finder | Find Your Perfect BJJ Academy</title>
+        <meta name="description" content="Find the best Brazilian Jiujitsu schools and academies near you with our comprehensive database and filters." />
+        <meta name="keywords" content="jiujitsu, bjj, schools, academy, training, find bjj, martial arts, grappling" />
         <link rel="icon" href="/favicon.ico" />
         <style jsx>{`
           #hero {
@@ -105,9 +83,7 @@ export default function Home() {
       <section id="hero">
         <h1>Find Your Perfect Jiujitsu School</h1>
         <p>
-          <span className="animated-text-line">
-            Find local Jiujitsu academies <span id="changing-text">{displayText}</span>
-          </span>
+          Find local Jiujitsu academies <span id="changing-text"></span>
         </p>
         <div className="search-container">
           <input type="text" id="location-input" placeholder="Enter your location..." />

@@ -120,20 +120,19 @@ nav {
 #changing-text {
     color: #818cf8;
     font-weight: 700;
-    min-width: 10px;
+    padding-right: 6px;
     display: inline-block;
     position: relative;
 }
 
 #changing-text::after {
-    content: '';
-    width: 2px;
-    height: 1.2em;
-    background-color: #818cf8;
+    content: '|';
+    color: #818cf8;
+    font-weight: 700;
     display: inline-block;
     position: absolute;
-    right: -4px;
-    top: 0.15em;
+    right: 0;
+    top: 0;
     animation: blink 0.7s infinite;
 }
 

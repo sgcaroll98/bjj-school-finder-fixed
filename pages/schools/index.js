@@ -2,7 +2,6 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { supabase } from '../../lib/supabaseClient'
-import Layout from '../../components/Layout'
 
 export default function Schools() {
   const [schools, setSchools] = useState([])
@@ -101,7 +100,7 @@ export default function Schools() {
   }
 
   return (
-    <Layout>
+    <div className="schools-page">
       <Head>
         <title>Find Schools | Jiujitsu School Finder</title>
         <meta name="description" content="Sort and filter Brazilian Jiujitsu schools based on what matters most to you" />
@@ -359,6 +358,15 @@ export default function Schools() {
           </div>
         </div>
       </section>
-    </Layout>
+    </div>
+  )
+}
+
+// Define a custom layout for this page
+Schools.getLayout = function getLayout(page) {
+  return (
+    <>
+      {page}
+    </>
   )
 }
