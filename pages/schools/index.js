@@ -103,7 +103,14 @@ export default function Schools() {
         <meta name="description" content="Sort and filter Brazilian Jiujitsu schools based on what matters most to you" />
       </Head>
 
-      <section className="sort-header">
+      <section 
+        className="sort-header" 
+        style={{
+          backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('/images/hero-bg.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center"
+        }}
+      >
         <div className="container">
           <div className="section-header text-center">
             <h1>Find Your Perfect School Match</h1>
@@ -278,7 +285,7 @@ export default function Schools() {
 
               <div className="filter-actions">
                 <button className="apply-filters-btn" onClick={applyFilters}>Apply Filters</button>
-                <button className="clear-filters-btn" onClick={clearFilters}>Clear All</button>
+                <button className="clear-filters-btn" style={{ marginLeft: '10px' }} onClick={clearFilters}>Clear All</button>
               </div>
             </aside>
 
