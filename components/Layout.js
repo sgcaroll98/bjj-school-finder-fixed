@@ -11,6 +11,7 @@ export default function Layout({ title, keywords, description, children }) {
         <title>{title || 'Jiujitsu School Finder'}</title>
         <meta name="description" content={description || 'Find the perfect Brazilian Jiujitsu school near you'} />
         <meta name="keywords" content={keywords || 'jiujitsu, schools, academies, training'} />
+        <link rel="icon" href="/favicon.ico" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
       </Head>
