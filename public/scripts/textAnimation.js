@@ -18,38 +18,41 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentPhrase = 0;
     let currentCharacter = 0;
     let isDeleting = false;
-    let typingSpeed = 60; // Faster typing speed
+    let typingSpeed = 50; // Faster typing speed
     
     function type() {
         const currentText = phrases[currentPhrase];
         
         if (isDeleting) {
-            textElement.textContent = currentText.substring(0, currentCharacter - 1);
-            currentCharacter--;
+            // Make deletion much faster by deleting multiple characters at once
+            const charsToDelete = 3; // Delete 3 characters at once
+            const newPosition = Math.max(0, currentCharacter - charsToDelete);
+            textElement.textContent = currentText.substring(0, newPosition);
+            currentCharacter = newPosition;
         } else {
             textElement.textContent = currentText.substring(0, currentCharacter + 1);
             currentCharacter++;
         }
         
-        // If word is complete, start deleting after delay
+        // If word is complete, start deleting after a shorter delay
         if (!isDeleting && currentCharacter === currentText.length) {
             isDeleting = true;
-            typingSpeed = 300; // Shorter pause before deleting
+            typingSpeed = 150; // Very short pause before deleting
         }
         
-        // If deletion is complete, move to next word
+        // If deletion is complete, move to next word immediately
         if (isDeleting && currentCharacter === 0) {
             isDeleting = false;
-            typingSpeed = 60; // Faster typing speed
+            typingSpeed = 50; // Faster typing speed
             currentPhrase = (currentPhrase + 1) % phrases.length;
         }
         
         // Set dynamic speed for more natural typing
-        const speed = isDeleting ? 30 : typingSpeed; // Faster deletion speed
+        const speed = isDeleting ? 10 : typingSpeed; // Super fast deletion speed (10ms)
         
         setTimeout(type, speed);
     }
     
     // Start typing animation immediately
-    setTimeout(type, 500);
+    setTimeout(type, 300);
 });
