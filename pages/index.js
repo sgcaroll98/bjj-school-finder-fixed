@@ -1,18 +1,16 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { supabase } from '../lib/supabaseClient'
 import SchoolCard from '../components/SchoolCard'
 
 export default function Home() {
   const router = useRouter();
+  const [displayText, setDisplayText] = useState('');
   
-  // Inline text animation as a backup
+  // Enhanced typing animation
   useEffect(() => {
-    const changingText = document.getElementById('changing-text');
-    if (!changingText) return;
-    
     const phrases = [
       'rated 5-stars by students...',
       'with world-class instruction...',
@@ -31,20 +29,60 @@ export default function Home() {
       'providing professional instruction...'
     ];
     
-    let currentIndex = 0;
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typingSpeed = 80; // ms per character when typing
+    let deletingSpeed = 40; // ms per character when deleting
+    let pauseEnd = 1500; // pause when phrase is fully typed
+    let pauseStart = 500; // pause when phrase is deleted before typing next
     
-    function updateText() {
-      changingText.textContent = phrases[currentIndex];
-      currentIndex = (currentIndex + 1) % phrases.length;
-    }
+    const typeEffect = () => {
+      // Current phrase
+      const currentPhrase = phrases[phraseIndex % phrases.length];
+      
+      // Set display text based on current state
+      if (isDeleting) {
+        // Deleting characters
+        setDisplayText(currentPhrase.substring(0, charIndex - 1));
+        charIndex--;
+      } else {
+        // Adding characters
+        setDisplayText(currentPhrase.substring(0, charIndex + 1));
+        charIndex++;
+      }
+      
+      // Determine what to do next and when
+      let timeout;
+      
+      // If typing and reached end of phrase
+      if (!isDeleting && charIndex === currentPhrase.length) {
+        // Pause at the end before deleting
+        timeout = pauseEnd;
+        isDeleting = true;
+      } 
+      // If deleting and reached beginning of phrase
+      else if (isDeleting && charIndex === 0) {
+        // Move to next phrase
+        isDeleting = false;
+        phraseIndex++;
+        // Pause before typing next phrase
+        timeout = pauseStart;
+      }
+      // Otherwise continue typing/deleting at normal speed
+      else {
+        timeout = isDeleting ? deletingSpeed : typingSpeed;
+      }
+      
+      // Schedule next update
+      setTimeout(typeEffect, timeout);
+    };
     
-    // Set initial text
-    updateText();
+    // Start the typing effect
+    const timer = setTimeout(typeEffect, 500);
     
-    // Change text every 3 seconds
-    const interval = setInterval(updateText, 3000);
-    
-    return () => clearInterval(interval);
+    // Cleanup
+    return () => clearTimeout(timer);
   }, []);
   
   return (
@@ -77,13 +115,31 @@ export default function Home() {
             position: relative;
             z-index: 2;
           }
+          #changing-text {
+            color: #818cf8;
+            font-weight: 700;
+            position: relative;
+          }
+          
+          #changing-text::after {
+            content: '|';
+            position: absolute;
+            right: -4px;
+            color: #818cf8;
+            animation: blink 0.7s infinite;
+          }
+          
+          @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+          }
         `}</style>
       </Head>
 
       <section id="hero">
         <h1>Find Your Perfect Jiujitsu School</h1>
         <p>
-          Find local Jiujitsu academies <span id="changing-text"></span>
+          Find local Jiujitsu academies <span id="changing-text">{displayText}</span>
         </p>
         <div className="search-container">
           <input type="text" id="location-input" placeholder="Enter your location..." />
