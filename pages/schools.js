@@ -186,16 +186,18 @@ export default function Schools() {
         <meta name="description" content={`Find the best Brazilian Jiu-Jitsu schools and academies ${state ? `in ${stateNames[state.toUpperCase()]}` : ''}.`} />
       </Head>
       
-      <div className="schools-container">
-        <div className="page-header">
-          <h1 className="page-title">{getPageTitle()}</h1>
-          <p className="page-subtitle">
+      <section className="schools-hero">
+        <div className="container">
+          <h1>{getPageTitle()}</h1>
+          <p>
             {state 
-              ? `Discover the best Brazilian Jiu-Jitsu schools and academies in ${stateNames[state.toUpperCase()]}. Filter by training style, amenities, and more.` 
-              : 'Browse our comprehensive directory of BJJ schools and find the perfect training environment for your goals.'}
+              ? `Discover the best Brazilian Jiu-Jitsu schools and academies in ${stateNames[state.toUpperCase()]}.` 
+              : 'Find the perfect Brazilian Jiu-Jitsu school for your training journey.'}
           </p>
         </div>
-        
+      </section>
+      
+      <div className="schools-container">
         <div className="filters-bar">
           <div className="filter-options">
             <Link href="/schools?filter=popular">
