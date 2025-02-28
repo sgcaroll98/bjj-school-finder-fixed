@@ -215,7 +215,7 @@ export default function Schools() {
   };
   
   return (
-    <Layout>
+    <div>
       <Head>
         <title>{getPageTitle()} | BJJ School Finder</title>
         <meta name="description" content={`Find the best Brazilian Jiu-Jitsu schools and academies ${state ? `in ${stateNames[state.toUpperCase()]}` : ''}.`} />
@@ -413,6 +413,11 @@ export default function Schools() {
           </>
         )}
       </div>
-    </Layout>
+    </div>
   );
 }
+
+// Use the Layout component from _app.js to avoid duplicate footers
+Schools.getLayout = function getLayout(page) {
+  return <Layout>{page}</Layout>;
+};

@@ -68,7 +68,7 @@ export default function States() {
   );
   
   return (
-    <Layout>
+    <div>
       <Head>
         <title>Browse BJJ Schools by State | BJJ School Finder</title>
         <meta name="description" content="Explore Brazilian Jiu-Jitsu schools and academies across different states in the US." />
@@ -209,6 +209,11 @@ export default function States() {
           </div>
         )}
       </div>
-    </Layout>
+    </div>
   );
 }
+
+// Use the Layout component from _app.js to avoid duplicate footers
+States.getLayout = function getLayout(page) {
+  return <Layout>{page}</Layout>;
+};
