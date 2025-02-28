@@ -111,6 +111,7 @@ export default function Signup() {
             align-items: center;
             justify-content: center;
             padding: 2rem 1rem;
+            margin-top: 1.5rem;
           }
           
           /* Form container */
