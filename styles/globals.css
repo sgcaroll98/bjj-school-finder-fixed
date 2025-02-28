@@ -680,79 +680,83 @@ nav {
 
 /* Footer */
 .site-footer {
-    background-color: var(--background, #f3f4f6);
-    color: #374151;
-    padding: 4rem 2rem 2rem;
+  background-color: #f8f9fa;
+  padding: 3rem 0 1rem;
+  margin-top: 2rem;
 }
 
 .footer-content {
-    display: flex;
-    max-width: 1200px;
-    margin: 0 auto;
-    gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
 }
 
 .footer-column {
-    flex: 1 1 33.333%;
-    text-align: center;
+  flex: 1;
 }
 
-.footer-column:first-child {
-    text-align: left;
-}
-
-.footer-column:last-child {
-    text-align: right;
+.footer-column:nth-child(2) {
+  text-align: center;
+  flex: 2;
 }
 
 .footer-column h3 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: 1.5rem;
-    color: #111827;
-}
-
-.footer-column ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: inline-block;
-    text-align: left;
-}
-
-.footer-column:last-child ul {
-    text-align: right;
-    display: inline-block;
-}
-
-.footer-column ul li {
-    margin-bottom: 0.75rem;
-}
-
-.footer-column ul li a {
-    color: #4b5563;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.footer-column ul li a:hover {
-    color: #4f46e5;
+  color: #333;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .footer-column p {
-    color: #4b5563;
-    line-height: 1.6;
-    max-width: 24rem;
-    margin: 0 auto;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-column ul li a {
+  color: #666;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-column ul li a:hover {
+  color: var(--primary);
 }
 
 .copyright {
+  text-align: center;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #ddd;
+  color: #888;
+  font-size: 0.9rem;
+}
+
+/* Responsive Footer Styles */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
     text-align: center;
-    padding-top: 2rem;
-    margin-top: 2rem;
-    border-top: 1px solid #e5e7eb;
-    color: #6b7280;
-    font-size: 0.875rem;
+  }
+
+  .footer-column {
+    margin-bottom: 2rem;
+  }
+
+  .footer-column:last-child {
+    margin-bottom: 0;
+  }
 }
 
 /* Responsive */
