@@ -35,7 +35,7 @@ export default function Layout({ title, keywords, description, children }) {
         </nav>
       </header>
 
-      <main>{children}</main>
+      <main style={{ minHeight: 'calc(100vh - 400px)' }}>{children}</main>
 
       <footer className="site-footer">
         <div className="footer-content">

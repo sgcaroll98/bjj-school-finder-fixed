@@ -1,6 +1,7 @@
 import '../styles/globals.css'
 import '../styles/school.css'
 import '../styles/submission.css'
+import '../styles/schools.css'
 import Layout from '../components/Layout'
 import { useRouter } from 'next/router'
 import Script from 'next/script'

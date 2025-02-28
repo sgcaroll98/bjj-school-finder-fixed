@@ -2,9 +2,9 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
-import Layout from '../components/Layout'
 import SchoolCard from '../components/SchoolCard'
 import { supabase } from '../lib/supabaseClient'
+import Layout from '../components/Layout'
 
 export default function Schools() {
   const router = useRouter();
@@ -215,7 +215,7 @@ export default function Schools() {
   };
   
   return (
-    <div>
+    <div className="schools-container">
       <Head>
         <title>{getPageTitle()} | BJJ School Finder</title>
         <meta name="description" content={`Find the best Brazilian Jiu-Jitsu schools and academies ${state ? `in ${stateNames[state.toUpperCase()]}` : ''}.`} />
@@ -348,71 +348,69 @@ export default function Schools() {
         `}</style>
       </Head>
       
-      <div className="schools-container">
-        <div className="page-header">
-          <h1 className="page-title">{getPageTitle()}</h1>
-          <p className="page-subtitle">
-            {state 
-              ? `Discover the best Brazilian Jiu-Jitsu schools and academies in ${stateNames[state.toUpperCase()]}. Filter by training style, amenities, and more.` 
-              : 'Browse our comprehensive directory of BJJ schools and find the perfect training environment for your goals.'}
-          </p>
-        </div>
-        
-        <div className="filters-bar">
-          <div className="filter-options">
-            <Link href="/schools?filter=popular">
-              <button className={`filter-button ${filter === 'popular' ? 'active' : ''}`}>
-                Popular Schools
-              </button>
-            </Link>
-            <Link href="/schools?filter=categories">
-              <button className={`filter-button ${filter === 'categories' ? 'active' : ''}`}>
-                By Category
-              </button>
-            </Link>
-            <Link href="/states">
-              <button className={`filter-button ${filter === 'states' || state ? 'active' : ''}`}>
-                By State
-              </button>
-            </Link>
-          </div>
-          
-          <select className="sort-dropdown">
-            <option value="rating">Sort by: Rating</option>
-            <option value="reviews">Sort by: Most Reviews</option>
-            <option value="name">Sort by: Name A-Z</option>
-            <option value="newest">Sort by: Newest</option>
-          </select>
-        </div>
-        
-        {loading ? (
-          <div style={{ textAlign: 'center', padding: '3rem 0' }}>
-            <p>Loading schools...</p>
-          </div>
-        ) : (
-          <>
-            {schools.length > 0 ? (
-              <div className="schools-grid">
-                {schools.map(school => (
-                  <SchoolCard key={school.id} school={school} />
-                ))}
-              </div>
-            ) : (
-              <div className="no-results">
-                <h3>No schools found</h3>
-                <p>
-                  {state 
-                    ? `We couldn't find any BJJ schools in ${stateNames[state.toUpperCase()]} matching your criteria. Try adjusting your filters or check back later as our database grows.`
-                    : 'No schools match your current search criteria. Try adjusting your filters or search terms.'}
-                </p>
-                <Link href="/states" className="return-link">
-                  Return to Browse by State
-                </Link>
-              </div>
-            )}
-          </>
-        )}
+      <div className="page-header">
+        <h1 className="page-title">{getPageTitle()}</h1>
+        <p className="page-subtitle">
+          {state 
+            ? `Discover the best Brazilian Jiu-Jitsu schools and academies in ${stateNames[state.toUpperCase()]}. Filter by training style, amenities, and more.` 
+            : 'Browse our comprehensive directory of BJJ schools and find the perfect training environment for your goals.'}
+        </p>
       </div>
+      
+      <div className="filters-bar">
+        <div className="filter-options">
+          <Link href="/schools?filter=popular">
+            <button className={`filter-button ${filter === 'popular' ? 'active' : ''}`}>
+              Popular Schools
+            </button>
+          </Link>
+          <Link href="/schools?filter=categories">
+            <button className={`filter-button ${filter === 'categories' ? 'active' : ''}`}>
+              By Category
+            </button>
+          </Link>
+          <Link href="/states">
+            <button className={`filter-button ${filter === 'states' || state ? 'active' : ''}`}>
+              By State
+            </button>
+          </Link>
+        </div>
+        
+        <select className="sort-dropdown">
+          <option value="rating">Sort by: Rating</option>
+          <option value="reviews">Sort by: Most Reviews</option>
+          <option value="name">Sort by: Name A-Z</option>
+          <option value="newest">Sort by: Newest</option>
+        </select>
+      </div>
+      
+      {loading ? (
+        <div style={{ textAlign: 'center', padding: '3rem 0' }}>
+          <p>Loading schools...</p>
+        </div>
+      ) : (
+        <>
+          {schools.length > 0 ? (
+            <div className="schools-grid">
+              {schools.map(school => (
+                <SchoolCard key={school.id} school={school} />
+              ))}
+            </div>
+          ) : (
+            <div className="no-results">
+              <h3>No schools found</h3>
+              <p>
+                {state 
+                  ? `We couldn't find any BJJ schools in ${stateNames[state.toUpperCase()]} matching your criteria. Try adjusting your filters or check back later as our database grows.`
+                  : 'No schools match your current search criteria. Try adjusting your filters or search terms.'}
+              </p>
+              <Link href="/states" className="return-link">
+                Return to Browse by State
+              </Link>
+            </div>
+          )}
+        </>
+      )}
     </div>
   );
 }

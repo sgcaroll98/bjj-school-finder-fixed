@@ -1,0 +1,20 @@
+/* Schools Page Specific Styles */
+.schools-container {
+  padding-bottom: 0;
+  margin-bottom: 0;
+  min-height: calc(100vh - 400px);
+}
+
+/* Ensure footer doesn't get hidden */
+.site-footer {
+  margin-top: 2rem;
+  position: relative;
+  z-index: 10;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .schools-container {
+    min-height: calc(100vh - 300px);
+  }
+}
