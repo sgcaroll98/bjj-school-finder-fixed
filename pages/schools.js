@@ -6,7 +6,7 @@ import Layout from '../components/Layout'
 import SchoolCard from '../components/SchoolCard'
 import { supabase } from '../lib/supabaseClient'
 
-export default function Schools() {
+const Schools = () => {
   const router = useRouter();
   const { state, filter } = router.query;
   
@@ -215,7 +215,7 @@ export default function Schools() {
   };
   
   return (
-    <>
+    <Layout>
       <Head>
         <title>{getPageTitle()} | BJJ School Finder</title>
         <meta name="description" content={`Find the best Brazilian Jiu-Jitsu schools and academies ${state ? `in ${stateNames[state.toUpperCase()]}` : ''}.`} />
@@ -285,11 +285,8 @@ export default function Schools() {
           )}
         </div>
       </div>
-    </>
+    </Layout>
   );
 }
 
-// Use the Layout component from _app.js to avoid duplicate footers
-Schools.getLayout = function getLayout(page) {
-  return <Layout>{page}</Layout>;
-};
+export default Schools;

@@ -2,9 +2,9 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Layout from '../components/Layout'
 
-export default function About() {
+const About = () => {
   return (
-    <>
+    <Layout>
       <Head>
         <title>About - Jiujitsu School Finder</title>
         <meta name="description" content="Learn about our mission to connect people with Brazilian Jiu-Jitsu schools across the United States." />
@@ -63,11 +63,8 @@ export default function About() {
           </div>
         </section>
       </div>
-    </>
+    </Layout>
   );
 }
 
-// Use the Layout component from _app.js to avoid duplicate footers
-About.getLayout = function getLayout(page) {
-  return <Layout>{page}</Layout>;
-};
+export default About;
