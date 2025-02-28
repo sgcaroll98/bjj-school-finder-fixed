@@ -46,8 +46,8 @@ export default function Layout({ title, keywords, description, children }) {
             <ul>
               <li><Link href="/about">About Us</Link></li>
               <li><Link href="/contact">Contact</Link></li>
-              <li><Link href="/privacy-policy">Privacy Policy</Link></li>
-              <li><Link href="/terms-of-service">Terms of Service</Link></li>
+              <li><Link href="/privacy">Privacy Policy</Link></li>
+              <li><Link href="/terms">Terms of Service</Link></li>
             </ul>
           </div>
           
@@ -59,12 +59,13 @@ export default function Layout({ title, keywords, description, children }) {
           <div className="footer-column">
             <h3>For School Owners</h3>
             <ul>
-              <li><Link href="/claim-your-school">Claim Your School</Link></li>
+              <li><Link href="/claim">Claim Your School</Link></li>
               <li><Link href="/advertise">Advertise With Us</Link></li>
               <li><Link href="/pricing">Pricing</Link></li>
             </ul>
           </div>
         </div>
+        
         <div className="copyright">
           &copy; {new Date().getFullYear()} Jiujitsu School Finder. All rights reserved.
         </div>

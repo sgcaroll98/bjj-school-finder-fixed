@@ -7,38 +7,51 @@ import SchoolCard from '../components/SchoolCard'
 
 export default function Home() {
   const router = useRouter();
-  const [changingText, setChangingText] = useState('for beginners');
-  const textOptions = ['for beginners', 'for advanced training', 'for competition', 'with No-Gi classes', 'with kids programs'];
-  const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const [displayText, setDisplayText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
-  const [typingSpeed, setTypingSpeed] = useState(150);
+  const [loopNum, setLoopNum] = useState(0);
+  
+  // Animation phrases
+  const phrases = [
+    'for beginners',
+    'for advanced training',
+    'for competition',
+    'with No-Gi classes',
+    'with kids programs'
+  ];
 
-  // Typing animation effect
   useEffect(() => {
-    const textToType = textOptions[currentTextIndex];
-    
-    const timeout = setTimeout(() => {
-      if (!isDeleting) {
-        setDisplayText(textToType.substring(0, displayText.length + 1));
-        
-        if (displayText.length === textToType.length) {
-          setIsDeleting(true);
-          setTypingSpeed(800); // pause before deleting
-        }
+    const handleTyping = () => {
+      const i = loopNum % phrases.length;
+      const fullText = phrases[i];
+
+      if (isDeleting) {
+        // Fast deletion - immediately clear text
+        setDisplayText('');
+        setIsDeleting(false);
+        setLoopNum(loopNum + 1);
+        // Wait a tiny bit before starting to type the next phrase
+        setTimeout(handleTyping, 100);
       } else {
-        setDisplayText(textToType.substring(0, displayText.length - 1));
-        
-        if (displayText.length === 0) {
-          setIsDeleting(false);
-          setTypingSpeed(150);
-          setCurrentTextIndex((currentTextIndex + 1) % textOptions.length);
+        if (displayText.length < fullText.length) {
+          // Still typing
+          setDisplayText(fullText.substring(0, displayText.length + 1));
+          // Schedule next character typing
+          setTimeout(handleTyping, 40); // Fast typing
+        } else {
+          // Finished typing, pause before deletion
+          setIsDeleting(true);
+          setTimeout(handleTyping, 800); // Pause at word completion
         }
       }
-    }, typingSpeed);
+    };
+
+    // Start the typing effect
+    const timer = setTimeout(handleTyping, 200);
     
-    return () => clearTimeout(timeout);
-  }, [displayText, isDeleting, currentTextIndex, textOptions, typingSpeed]);
+    // Cleanup timer on unmount
+    return () => clearTimeout(timer);
+  }, [displayText, isDeleting, loopNum, phrases]);
 
   return (
     <div>
