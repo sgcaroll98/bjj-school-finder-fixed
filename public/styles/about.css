@@ -104,16 +104,22 @@
 }
 
 .tile-icon {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 1.5rem;
 }
 
-.tile-icon i {
-  font-size: 2rem;
+.tile-icon svg {
+  width: 100%;
+  height: 100%;
   color: #4f46e5;
   transition: all 0.3s ease;
 }
 
-.browse-tile:hover .tile-icon i {
+.browse-tile:hover .tile-icon svg {
   color: white;
 }
 
@@ -176,12 +182,14 @@
 }
 
 .featured-gym-card {
-  background-color: #f9fafb;
+  background-color: white;
   border-radius: 0.75rem;
   overflow: hidden;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
   border: 1px solid #e5e7eb;
+  padding: 2rem;
+  text-align: center;
 }
 
 .featured-gym-card:hover {
@@ -190,22 +198,37 @@
 }
 
 .gym-info {
-  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .gym-header {
   margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.feature-icon {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.feature-icon svg {
+  stroke: #111827;
+  stroke-width: 1.5;
 }
 
 .gym-header h3 {
   font-size: 1.25rem;
   font-weight: 600;
   color: #1f2937;
-}
-
-.gym-header h3 i {
-  color: #4f46e5;
-  margin-right: 0.5rem;
+  margin-top: 0.5rem;
 }
 
 .gym-info p {

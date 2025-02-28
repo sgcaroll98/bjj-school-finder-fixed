@@ -21,21 +21,39 @@ export default function About() {
           <div className="browse-tiles">
             <div className="browse-tile">
               <div className="tile-icon">
-                <i className="fas fa-bullseye"></i>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <circle cx="12" cy="12" r="6"></circle>
+                  <circle cx="12" cy="12" r="2"></circle>
+                </svg>
               </div>
               <h2>Our Mission</h2>
               <p>The BJJ School Directory was created with a simple but powerful mission: to connect people with Brazilian Jiu-Jitsu schools and help BJJ academies gain more visibility in their communities.</p>
             </div>
             <div className="browse-tile">
               <div className="tile-icon">
-                <i className="fas fa-users"></i>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
               </div>
               <h2>For Practitioners</h2>
               <p>We provide an easy-to-use platform to discover BJJ schools in your area, complete with essential information like location, schedule, and contact details.</p>
             </div>
             <div className="browse-tile">
               <div className="tile-icon">
-                <i className="fas fa-building"></i>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <rect x="2" y="2" width="20" height="20" rx="2" ry="2"></rect>
+                  <path d="M17 2v20"></path>
+                  <path d="M7 2v20"></path>
+                  <path d="M2 12h20"></path>
+                  <path d="M2 7h5"></path>
+                  <path d="M2 17h5"></path>
+                  <path d="M17 17h5"></path>
+                  <path d="M17 7h5"></path>
+                </svg>
               </div>
               <h2>For Schools</h2>
               <p>We offer increased online visibility and exposure to help schools connect with potential students who are actively looking to train.</p>
@@ -54,7 +72,13 @@ export default function About() {
             <div className="featured-gym-card">
               <div className="gym-info">
                 <div className="gym-header">
-                  <h3><i className="fas fa-search"></i> Easy Search</h3>
+                  <div className="feature-icon">
+                    <svg viewBox="0 0 24 24" width="48" height="48" stroke="currentColor" fill="none">
+                      <circle cx="11" cy="11" r="8" />
+                      <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                    </svg>
+                  </div>
+                  <h3>Easy Search</h3>
                 </div>
                 <p>Find schools quickly using our intuitive search functionality</p>
               </div>
@@ -62,7 +86,14 @@ export default function About() {
             <div className="featured-gym-card">
               <div className="gym-info">
                 <div className="gym-header">
-                  <h3><i className="fas fa-info-circle"></i> Detailed Profiles</h3>
+                  <div className="feature-icon">
+                    <svg viewBox="0 0 24 24" width="48" height="48" stroke="currentColor" fill="none">
+                      <circle cx="12" cy="12" r="10" />
+                      <line x1="12" y1="16" x2="12" y2="12" />
+                      <line x1="12" y1="8" x2="12.01" y2="8" />
+                    </svg>
+                  </div>
+                  <h3>Detailed Profiles</h3>
                 </div>
                 <p>Access comprehensive information about each school</p>
               </div>
@@ -70,7 +101,13 @@ export default function About() {
             <div className="featured-gym-card">
               <div className="gym-info">
                 <div className="gym-header">
-                  <h3><i className="fas fa-mobile-alt"></i> Mobile Friendly</h3>
+                  <div className="feature-icon">
+                    <svg viewBox="0 0 24 24" width="48" height="48" stroke="currentColor" fill="none">
+                      <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
+                      <line x1="12" y1="18" x2="12.01" y2="18" />
+                    </svg>
+                  </div>
+                  <h3>Mobile Friendly</h3>
                 </div>
                 <p>Access our directory from any device, anywhere</p>
               </div>
