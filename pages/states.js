@@ -75,14 +75,12 @@ export default function States() {
         <link rel="stylesheet" href="/styles/states.css" />
       </Head>
       
+      <section id="hero" className="states-hero">
+        <h1>Browse BJJ Schools by State</h1>
+        <p>Find Brazilian Jiu-Jitsu schools and academies in your state or explore BJJ opportunities across the United States.</p>
+      </section>
+      
       <div className="states-container">
-        <div className="page-header">
-          <h1 className="page-title">Browse BJJ Schools by State</h1>
-          <p className="page-subtitle">
-            Find Brazilian Jiu-Jitsu schools and academies in your state or explore BJJ opportunities across the United States.
-          </p>
-        </div>
-        
         <div className="search-box">
           <input
             type="text"
