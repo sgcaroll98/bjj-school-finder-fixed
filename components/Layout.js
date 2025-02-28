@@ -16,10 +16,8 @@ export default function Layout({ title, keywords, description, children }) {
       </Head>
       
       <header>
-        <nav className="main-nav">
-          <div className="logo">
-            <Link href="/">Jiujitsu School Finder</Link>
-          </div>
+        <nav>
+          <div className="logo">Jiujitsu School Finder</div>
           <div className="nav-links">
             <Link href="/">Home</Link>
             <Link href="/schools">Schools</Link>
