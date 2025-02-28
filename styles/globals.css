@@ -25,85 +25,67 @@ body {
 
 /* Nav Bar */
 header {
+    background-color: rgba(21, 24, 39, 0.8);
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 10;
-    padding: 1.5rem 2rem;
+    z-index: 100;
+    backdrop-filter: blur(10px);
 }
 
-nav {
+.main-nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 1rem 2rem;
 }
 
-.logo {
+.logo a {
     color: white;
-    font-size: 1.5rem;
-    font-weight: 700;
+    font-size: 1.1rem;
+    font-weight: 500;
     text-decoration: none;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .nav-links {
     display: flex;
-    gap: 1.75rem;
-    margin-left: auto;
+    align-items: center;
+    gap: 1.5rem;
 }
 
 .nav-links a {
     color: rgba(255, 255, 255, 0.9);
     text-decoration: none;
-    font-weight: 500;
-    font-size: 1rem;
+    font-weight: 400;
+    font-size: 0.9rem;
     transition: all 0.2s;
-    white-space: nowrap;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .nav-links a:hover {
     color: #ffffff;
-    transform: translateY(-1px);
 }
 
 .auth-buttons {
     display: flex;
-    gap: 0.75rem;
-    margin-left: 2rem;
+    margin-left: 1rem;
 }
 
-.auth-button {
-    padding: 0.5rem 1.25rem;
-    border-radius: 0.5rem;
-    font-weight: 600;
-    transition: all 0.2s;
-    text-decoration: none;
-}
-
-.login {
-    background-color: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    color: rgba(255, 255, 255, 0.9);
-}
-
-.login:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+.btn-primary {
+    background-color: #4f46e5;
     color: white;
-    transform: translateY(-1px);
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: all 0.2s;
 }
 
-.signup {
-    background-color: var(--primary);
-    color: white !important;
-}
-
-.signup:hover {
-    background-color: #2563eb;
-    transform: translateY(-1px);
+.btn-primary:hover {
+    background-color: #4338ca;
 }
 
 /* Hero Section */

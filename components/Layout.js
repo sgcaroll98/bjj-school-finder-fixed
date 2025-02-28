@@ -16,23 +16,22 @@ export default function Layout({ title, keywords, description, children }) {
       </Head>
       
       <header>
-        <nav>
-          <Link href="/" className="logo">Jiujitsu School Finder</Link>
+        <nav className="main-nav">
+          <div className="logo">
+            <Link href="/">Jiujitsu School Finder</Link>
+          </div>
           <div className="nav-links">
             <Link href="/">Home</Link>
             <Link href="/schools">Schools</Link>
             <Link href="/about">About</Link>
             <Link href="/contact">Contact</Link>
-          </div>
-          <div className="auth-buttons">
-            {user ? (
-              <Link href="/dashboard" className="auth-button">Dashboard</Link>
-            ) : (
-              <>
-                <Link href="/login" className="auth-button login">Login</Link>
-                <Link href="/signup" className="auth-button signup">Sign Up</Link>
-              </>
-            )}
+            <div className="auth-buttons">
+              {user ? (
+                <Link href="/dashboard" className="btn-primary">Dashboard</Link>
+              ) : (
+                <Link href="/signup" className="btn-primary">Sign Up</Link>
+              )}
+            </div>
           </div>
         </nav>
       </header>

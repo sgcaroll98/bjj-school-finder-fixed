@@ -19,7 +19,7 @@ export default function Schools() {
     showers: false,
     weights: false,
     lockers: false,
-    proshop: false,
+    sauna: false,
     morning: false,
     afternoon: false,
     evening: false,
@@ -43,6 +43,10 @@ export default function Schools() {
       if (filters.kids) query = query.eq('has_kids', true)
       if (filters.competition) query = query.eq('has_comp', true)
       if (filters.women) query = query.eq('has_women', true)
+      if (filters.showers) query = query.eq('has_showers', true)
+      if (filters.weights) query = query.eq('has_weights', true)
+      if (filters.lockers) query = query.eq('has_lockers', true)
+      if (filters.sauna) query = query.eq('has_sauna', true)
       
       // Execute the query
       const { data, error } = await query
@@ -88,7 +92,7 @@ export default function Schools() {
       showers: false,
       weights: false,
       lockers: false,
-      proshop: false,
+      sauna: false,
       morning: false,
       afternoon: false,
       evening: false,
@@ -232,11 +236,11 @@ export default function Schools() {
                   <label className="checkbox-label">
                     <input 
                       type="checkbox" 
-                      name="proshop" 
-                      checked={filters.proshop}
+                      name="sauna" 
+                      checked={filters.sauna}
                       onChange={handleFilterChange}
                     /> 
-                    Pro Shop
+                    Sauna
                   </label>
                 </div>
               </div>
