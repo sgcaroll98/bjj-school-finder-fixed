@@ -1,14 +1,23 @@
 /* Schools Page Styles */
+.home-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-top: 0;
+}
+
 .schools-container {
   padding: 2rem;
   max-width: 1200px;
   margin: 0 auto;
-  min-height: 100vh;
+  flex: 1;
+  width: 100%;
 }
 
 /* Hero Section */
 .schools-hero {
   margin-top: 0;
+  padding-top: 6rem; /* Add padding to account for the fixed header */
   min-height: 50vh;
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)),
               url('/images/hero-bg.jpg') center/cover no-repeat;
@@ -17,7 +26,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
   position: relative;
   text-align: center;
 }

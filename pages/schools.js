@@ -215,75 +215,77 @@ export default function Schools() {
   };
   
   return (
-    <div className="home-container">
+    <>
       <Head>
         <title>{getPageTitle()} | BJJ School Finder</title>
         <meta name="description" content={`Find the best Brazilian Jiu-Jitsu schools and academies ${state ? `in ${stateNames[state.toUpperCase()]}` : ''}.`} />
         <link rel="stylesheet" href="/styles/schools.css" />
       </Head>
       
-      <section id="hero" className="schools-hero">
-        <h1>{getPageTitle()}</h1>
-        <p>Discover the best Brazilian Jiu-Jitsu schools and academies to start or continue your martial arts journey.</p>
-      </section>
-      
-      <div className="schools-container">
-        <div className="filters-bar">
-          <div className="filter-options">
-            <Link href="/schools?filter=popular">
-              <button className={`filter-button ${filter === 'popular' ? 'active' : ''}`}>
-                Popular Schools
-              </button>
-            </Link>
-            <Link href="/schools?filter=categories">
-              <button className={`filter-button ${filter === 'categories' ? 'active' : ''}`}>
-                By Category
-              </button>
-            </Link>
-            <Link href="/states">
-              <button className={`filter-button ${filter === 'states' || state ? 'active' : ''}`}>
-                By State
-              </button>
-            </Link>
+      <div className="home-container">
+        <section id="hero" className="schools-hero">
+          <h1>{getPageTitle()}</h1>
+          <p>Discover the best Brazilian Jiu-Jitsu schools and academies to start or continue your martial arts journey.</p>
+        </section>
+        
+        <div className="schools-container">
+          <div className="filters-bar">
+            <div className="filter-options">
+              <Link href="/schools?filter=popular">
+                <button className={`filter-button ${filter === 'popular' ? 'active' : ''}`}>
+                  Popular Schools
+                </button>
+              </Link>
+              <Link href="/schools?filter=categories">
+                <button className={`filter-button ${filter === 'categories' ? 'active' : ''}`}>
+                  By Category
+                </button>
+              </Link>
+              <Link href="/states">
+                <button className={`filter-button ${filter === 'states' || state ? 'active' : ''}`}>
+                  By State
+                </button>
+              </Link>
+            </div>
+            
+            <select className="sort-dropdown">
+              <option value="rating">Sort by: Rating</option>
+              <option value="reviews">Sort by: Most Reviews</option>
+              <option value="name">Sort by: Name A-Z</option>
+              <option value="newest">Sort by: Newest</option>
+            </select>
           </div>
           
-          <select className="sort-dropdown">
-            <option value="rating">Sort by: Rating</option>
-            <option value="reviews">Sort by: Most Reviews</option>
-            <option value="name">Sort by: Name A-Z</option>
-            <option value="newest">Sort by: Newest</option>
-          </select>
+          {loading ? (
+            <div style={{ textAlign: 'center', padding: '3rem 0' }}>
+              <p>Loading schools...</p>
+            </div>
+          ) : (
+            <>
+              {schools.length > 0 ? (
+                <div className="schools-grid">
+                  {schools.map(school => (
+                    <SchoolCard key={school.id} school={school} />
+                  ))}
+                </div>
+              ) : (
+                <div className="no-results">
+                  <h3>No schools found</h3>
+                  <p>
+                    {state 
+                      ? `We couldn't find any BJJ schools in ${stateNames[state.toUpperCase()]} matching your criteria. Try adjusting your filters or check back later as our database grows.`
+                      : 'No schools match your current search criteria. Try adjusting your filters or search terms.'}
+                  </p>
+                  <Link href="/states" className="return-link">
+                    Return to Browse by State
+                  </Link>
+                </div>
+              )}
+            </>
+          )}
         </div>
-        
-        {loading ? (
-          <div style={{ textAlign: 'center', padding: '3rem 0' }}>
-            <p>Loading schools...</p>
-          </div>
-        ) : (
-          <>
-            {schools.length > 0 ? (
-              <div className="schools-grid">
-                {schools.map(school => (
-                  <SchoolCard key={school.id} school={school} />
-                ))}
-              </div>
-            ) : (
-              <div className="no-results">
-                <h3>No schools found</h3>
-                <p>
-                  {state 
-                    ? `We couldn't find any BJJ schools in ${stateNames[state.toUpperCase()]} matching your criteria. Try adjusting your filters or check back later as our database grows.`
-                    : 'No schools match your current search criteria. Try adjusting your filters or search terms.'}
-                </p>
-                <Link href="/states" className="return-link">
-                  Return to Browse by State
-                </Link>
-              </div>
-            )}
-          </>
-        )}
       </div>
-    </div>
+    </>
   );
 }
 
