@@ -8,9 +8,9 @@ export default function Layout({ title, keywords, description, children }) {
   return (
     <>
       <Head>
-        <title>{title || 'BJJ School Finder'}</title>
+        <title>{title || 'Jiujitsu School Finder'}</title>
         <meta name="description" content={description || 'Find the perfect Brazilian Jiujitsu school near you'} />
-        <meta name="keywords" content={keywords || 'bjj, jiujitsu, schools, academies, training'} />
+        <meta name="keywords" content={keywords || 'jiujitsu, schools, academies, training'} />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
       </Head>
@@ -41,35 +41,32 @@ export default function Layout({ title, keywords, description, children }) {
 
       <footer className="site-footer">
         <div className="footer-content">
-          <div className="footer-section about">
-            <h3>About Us</h3>
-            <p>BJJ School Finder helps practitioners find the perfect Brazilian Jiujitsu academy that matches their training goals and preferences.</p>
-          </div>
-          
-          <div className="footer-section links">
+          <div className="footer-column">
             <h3>Quick Links</h3>
             <ul>
-              <li><Link href="/">Home</Link></li>
-              <li><Link href="/schools">Find Schools</Link></li>
-              <li><Link href="/about">About</Link></li>
+              <li><Link href="/about">About Us</Link></li>
               <li><Link href="/contact">Contact</Link></li>
+              <li><Link href="/privacy-policy">Privacy Policy</Link></li>
+              <li><Link href="/terms-of-service">Terms of Service</Link></li>
             </ul>
           </div>
           
-          <div className="footer-section contact">
-            <h3>Contact Us</h3>
-            <p><i className="fas fa-envelope"></i> info@bjjschoolfinder.com</p>
-            <div className="social-links">
-              <a href="#"><i className="fab fa-facebook"></i></a>
-              <a href="#"><i className="fab fa-instagram"></i></a>
-              <a href="#"><i className="fab fa-twitter"></i></a>
-              <a href="#"><i className="fab fa-youtube"></i></a>
-            </div>
+          <div className="footer-column center-column">
+            <h3>Jiujitsu School Finder</h3>
+            <p>Find your perfect BJJ academy and start your journey today.</p>
+          </div>
+          
+          <div className="footer-column">
+            <h3>For School Owners</h3>
+            <ul>
+              <li><Link href="/claim-your-school">Claim Your School</Link></li>
+              <li><Link href="/advertise">Advertise With Us</Link></li>
+              <li><Link href="/pricing">Pricing</Link></li>
+            </ul>
           </div>
         </div>
-        
-        <div className="footer-bottom">
-          <p>&copy; {new Date().getFullYear()} BJJ School Finder. All rights reserved.</p>
+        <div className="copyright">
+          &copy; {new Date().getFullYear()} Jiujitsu School Finder. All rights reserved.
         </div>
       </footer>
     </>

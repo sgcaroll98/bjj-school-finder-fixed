@@ -4,55 +4,49 @@
  */
 
 document.addEventListener('DOMContentLoaded', function() {
-    const textElement = document.getElementById('changing-text');
-    if (!textElement) return;
+  const textElement = document.getElementById('changing-text');
+  if (!textElement) return;
+  
+  const phrases = [
+    'for beginners',
+    'for advanced training',
+    'for competition',
+    'with No-Gi classes',
+    'with kids programs'
+  ];
+  
+  let currentPhrase = 0;
+  let currentCharacter = 0;
+  let isDeleting = false;
+  let typingSpeed = 40; // Even faster typing
+  
+  function type() {
+    const currentText = phrases[currentPhrase];
     
-    const phrases = [
-        'for beginners',
-        'for advanced training',
-        'for competition',
-        'with No-Gi classes',
-        'with kids programs'
-    ];
-    
-    let currentPhrase = 0;
-    let currentCharacter = 0;
-    let isDeleting = false;
-    let typingSpeed = 50; // Faster typing speed
-    
-    function type() {
-        const currentText = phrases[currentPhrase];
-        
-        if (isDeleting) {
-            // Make deletion much faster by deleting multiple characters at once
-            const charsToDelete = 3; // Delete 3 characters at once
-            const newPosition = Math.max(0, currentCharacter - charsToDelete);
-            textElement.textContent = currentText.substring(0, newPosition);
-            currentCharacter = newPosition;
-        } else {
-            textElement.textContent = currentText.substring(0, currentCharacter + 1);
-            currentCharacter++;
-        }
-        
-        // If word is complete, start deleting after a shorter delay
-        if (!isDeleting && currentCharacter === currentText.length) {
-            isDeleting = true;
-            typingSpeed = 150; // Very short pause before deleting
-        }
-        
-        // If deletion is complete, move to next word immediately
-        if (isDeleting && currentCharacter === 0) {
-            isDeleting = false;
-            typingSpeed = 50; // Faster typing speed
-            currentPhrase = (currentPhrase + 1) % phrases.length;
-        }
-        
-        // Set dynamic speed for more natural typing
-        const speed = isDeleting ? 10 : typingSpeed; // Super fast deletion speed (10ms)
-        
-        setTimeout(type, speed);
+    if (isDeleting) {
+      // Make deletion extremely fast by deleting the entire text at once
+      textElement.textContent = '';
+      currentCharacter = 0;
+      isDeleting = false;
+      currentPhrase = (currentPhrase + 1) % phrases.length;
+    } else {
+      textElement.textContent = currentText.substring(0, currentCharacter + 1);
+      currentCharacter++;
+      
+      // If word is complete, start deleting after minimal delay
+      if (currentCharacter === currentText.length) {
+        isDeleting = true;
+        setTimeout(type, 800); // Pause at complete word
+        return;
+      }
     }
     
-    // Start typing animation immediately
-    setTimeout(type, 300);
+    // Set dynamic speed
+    const speed = isDeleting ? 1 : typingSpeed; // Extremely fast deletion
+    
+    setTimeout(type, speed);
+  }
+  
+  // Start typing animation immediately
+  setTimeout(type, 200);
 });

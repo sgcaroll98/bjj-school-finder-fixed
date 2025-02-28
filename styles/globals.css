@@ -682,91 +682,62 @@ nav {
 
 /* Footer */
 .site-footer {
-    background-color: #1f2937;
-    color: #f3f4f6;
+    background-color: #f8fafc;
+    color: #374151;
     padding: 4rem 2rem 2rem;
 }
 
 .footer-content {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 3rem;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-.footer-section h3 {
+.footer-column h3 {
     font-size: 1.25rem;
-    font-weight: 700;
+    font-weight: 600;
     margin-bottom: 1.5rem;
-    color: white;
+    color: #111827;
 }
 
-.footer-section p {
-    margin-bottom: 1.5rem;
-    line-height: 1.6;
-    color: #d1d5db;
-}
-
-.footer-section.about {
-    max-width: 350px;
-}
-
-.footer-section.links ul {
+.footer-column ul {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
-.footer-section.links li {
+.footer-column ul li {
     margin-bottom: 0.75rem;
 }
 
-.footer-section.links a {
-    color: #d1d5db;
+.footer-column ul li a {
+    color: #4b5563;
     text-decoration: none;
-    transition: all 0.2s;
+    transition: color 0.3s ease;
 }
 
-.footer-section.links a:hover {
-    color: white;
-    margin-left: 3px;
+.footer-column ul li a:hover {
+    color: #4f46e5;
 }
 
-.footer-section.contact p {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
+.footer-column p {
+    color: #4b5563;
+    line-height: 1.6;
 }
 
-.social-links {
-    display: flex;
-    gap: 1rem;
-}
-
-.social-links a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    color: #d1d5db;
-    transition: all 0.3s ease;
-}
-
-.social-links a:hover {
-    background: var(--primary);
-    color: white;
-    transform: translateY(-3px);
-}
-
-.footer-bottom {
-    border-top: 1px solid #374151;
-    margin-top: 3rem;
-    padding-top: 2rem;
+.center-column {
     text-align: center;
-    color: #9ca3af;
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 2.5rem;
+    margin-top: 2.5rem;
+    border-top: 1px solid #e5e7eb;
+    color: #6b7280;
+    font-size: 0.875rem;
 }
 
 /* Responsive */
