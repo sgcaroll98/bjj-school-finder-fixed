@@ -51,7 +51,7 @@ export default function Layout({ title, keywords, description, children }) {
             </ul>
           </div>
           
-          <div className="footer-column center-column">
+          <div className="footer-column">
             <h3>Jiujitsu School Finder</h3>
             <p>Find your perfect BJJ academy and start your journey today.</p>
           </div>
@@ -61,7 +61,6 @@ export default function Layout({ title, keywords, description, children }) {
             <ul>
               <li><Link href="/claim">Claim Your School</Link></li>
               <li><Link href="/advertise">Advertise With Us</Link></li>
-              <li><Link href="/pricing">Pricing</Link></li>
             </ul>
           </div>
         </div>

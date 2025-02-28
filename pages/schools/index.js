@@ -1,24 +1,34 @@
 import Head from 'next/head'
+import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { supabase } from '../../lib/supabaseClient'
-import SchoolCard from '../../components/SchoolCard'
-import FilterSidebar from '../../components/FilterSidebar'
+import Layout from '../../components/Layout'
 
 export default function Schools() {
   const [schools, setSchools] = useState([])
   const [loading, setLoading] = useState(true)
+  const [sortBy, setSortBy] = useState('rating')
   const [filters, setFilters] = useState({
-    state: '',
-    hasGi: false,
-    hasNogi: false,
-    hasKids: false,
-    hasComp: false,
-    hasWomen: false
+    gi: false,
+    nogi: false,
+    mma: false,
+    beginners: false,
+    kids: false,
+    competition: false,
+    women: false,
+    showers: false,
+    weights: false,
+    lockers: false,
+    proshop: false,
+    morning: false,
+    afternoon: false,
+    evening: false,
+    weekend: false
   })
 
   useEffect(() => {
     fetchSchools()
-  }, [filters])
+  }, [filters, sortBy])
 
   async function fetchSchools() {
     try {
@@ -27,41 +37,29 @@ export default function Schools() {
       // Start building the query
       let query = supabase.from('schools').select('*')
       
-      // Apply filters
-      if (filters.state) {
-        query = query.eq('state', filters.state)
-      }
-      
-      if (filters.hasGi) {
-        query = query.eq('has_gi', true)
-      }
-      
-      if (filters.hasNogi) {
-        query = query.eq('has_nogi', true)
-      }
-      
-      if (filters.hasKids) {
-        query = query.eq('has_kids', true)
-      }
-      
-      if (filters.hasComp) {
-        query = query.eq('has_comp', true)
-      }
-      
-      if (filters.hasWomen) {
-        query = query.eq('has_women', true)
-      }
+      // Apply filters (simplified for demo - actual filtering would be more complex)
+      if (filters.gi) query = query.eq('has_gi', true)
+      if (filters.nogi) query = query.eq('has_nogi', true)
+      if (filters.kids) query = query.eq('has_kids', true)
+      if (filters.competition) query = query.eq('has_comp', true)
+      if (filters.women) query = query.eq('has_women', true)
       
       // Execute the query
       const { data, error } = await query
       
-      if (error) {
-        throw error
+      if (error) throw error
+      
+      // Sort data
+      let sortedData = [...(data || [])]
+      if (sortBy === 'rating') {
+        sortedData.sort((a, b) => (b.rating || 0) - (a.rating || 0))
+      } else if (sortBy === 'reviews') {
+        sortedData.sort((a, b) => (b.reviews_count || 0) - (a.reviews_count || 0))
+      } else if (sortBy === 'price') {
+        sortedData.sort((a, b) => (a.price_level || 0) - (b.price_level || 0))
       }
       
-      if (data) {
-        setSchools(data)
-      }
+      setSchools(sortedData)
     } catch (error) {
       console.error('Error fetching schools:', error)
     } finally {
@@ -69,43 +67,287 @@ export default function Schools() {
     }
   }
 
-  function handleFilterChange(newFilters) {
-    setFilters({ ...filters, ...newFilters })
+  function handleFilterChange(e) {
+    const { name, checked } = e.target
+    setFilters(prev => ({ ...prev, [name]: checked }))
+  }
+
+  function applyFilters() {
+    fetchSchools()
+  }
+
+  function clearFilters() {
+    setFilters({
+      gi: false,
+      nogi: false,
+      mma: false,
+      beginners: false,
+      kids: false,
+      competition: false,
+      women: false,
+      showers: false,
+      weights: false,
+      lockers: false,
+      proshop: false,
+      morning: false,
+      afternoon: false,
+      evening: false,
+      weekend: false
+    })
   }
 
   return (
-    <div>
+    <Layout>
       <Head>
-        <title>Find BJJ Schools | BJJ School Finder</title>
-        <meta name="description" content="Browse and search for Brazilian Jiu-Jitsu schools across the country." />
+        <title>Find Schools | Jiujitsu School Finder</title>
+        <meta name="description" content="Sort and filter Brazilian Jiujitsu schools based on what matters most to you" />
       </Head>
 
-      <div className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold mb-8">Find BJJ Schools</h1>
-        
-        <div className="flex flex-col md:flex-row gap-8">
-          <div className="md:w-1/4">
-            <FilterSidebar filters={filters} onChange={handleFilterChange} />
-          </div>
-          
-          <div className="md:w-3/4">
-            {loading ? (
-              <div className="text-center py-8">Loading schools...</div>
-            ) : schools.length > 0 ? (
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                {schools.map(school => (
-                  <SchoolCard key={school.id} school={school} />
-                ))}
-              </div>
-            ) : (
-              <div className="text-center py-8">
-                <p className="text-xl">No schools found matching your criteria.</p>
-                <p className="mt-4">Try adjusting your filters or <a href="/add-school" className="text-blue-600 hover:underline">add a school</a>.</p>
-              </div>
-            )}
+      <section className="sort-header">
+        <div className="container">
+          <div className="section-header text-center">
+            <h1>Find Your Perfect School Match</h1>
+            <p>Sort and filter schools based on what matters most to you</p>
           </div>
         </div>
-      </div>
-    </div>
+      </section>
+
+      <section className="sort-content">
+        <div className="container">
+          <div className="sort-layout">
+            {/* Filter Sidebar */}
+            <aside className="filters-sidebar">
+              <div className="filter-group">
+                <h3>Training Style</h3>
+                <div className="filter-options">
+                  <label className="checkbox-label">
+                    <input 
+                      type="checkbox" 
+                      name="gi" 
+                      checked={filters.gi}
+                      onChange={handleFilterChange}
+                    /> 
+                    Gi Training
+                  </label>
+                  <label className="checkbox-label">
+                    <input 
+                      type="checkbox" 
+                      name="nogi" 
+                      checked={filters.nogi}
+                      onChange={handleFilterChange}
+                    /> 
+                    No-Gi Training
+                  </label>
+                  <label className="checkbox-label">
+                    <input 
+                      type="checkbox" 
+                      name="mma" 
+                      checked={filters.mma}
+                      onChange={handleFilterChange}
+                    /> 
+                    MMA
+                  </label>
+                </div>
+              </div>
+
+              <div className="filter-group">
+                <h3>Programs</h3>
+                <div className="filter-options">
+                  <label className="checkbox-label">
+                    <input 
+                      type="checkbox" 
+                      name="beginners" 
+                      checked={filters.beginners}
+                      onChange={handleFilterChange}
+                    /> 
+                    Beginners Classes
+                  </label>
+                  <label className="checkbox-label">
+                    <input 
+                      type="checkbox" 
+                      name="kids" 
+                      checked={filters.kids}
+                      onChange={handleFilterChange}
+                    /> 
+                    Kids Program
+                  </label>
+                  <label className="checkbox-label">
+                    <input 
+                      type="checkbox" 
+                      name="competition" 
+                      checked={filters.competition}
+                      onChange={handleFilterChange}
+                    /> 
+                    Competition Training
+                  </label>
+                  <label className="checkbox-label">
+                    <input 
+                      type="checkbox" 
+                      name="women" 
+                      checked={filters.women}
+                      onChange={handleFilterChange}
+                    /> 
+                    Women's Classes
+                  </label>
+                </div>
+              </div>
+
+              <div className="filter-group">
+                <h3>Amenities</h3>
+                <div className="filter-options">
+                  <label className="checkbox-label">
+                    <input 
+                      type="checkbox" 
+                      name="showers" 
+                      checked={filters.showers}
+                      onChange={handleFilterChange}
+                    /> 
+                    Showers
+                  </label>
+                  <label className="checkbox-label">
+                    <input 
+                      type="checkbox" 
+                      name="weights" 
+                      checked={filters.weights}
+                      onChange={handleFilterChange}
+                    /> 
+                    Weight Room
+                  </label>
+                  <label className="checkbox-label">
+                    <input 
+                      type="checkbox" 
+                      name="lockers" 
+                      checked={filters.lockers}
+                      onChange={handleFilterChange}
+                    /> 
+                    Lockers
+                  </label>
+                  <label className="checkbox-label">
+                    <input 
+                      type="checkbox" 
+                      name="proshop" 
+                      checked={filters.proshop}
+                      onChange={handleFilterChange}
+                    /> 
+                    Pro Shop
+                  </label>
+                </div>
+              </div>
+
+              <div className="filter-group">
+                <h3>Schedule</h3>
+                <div className="filter-options">
+                  <label className="checkbox-label">
+                    <input 
+                      type="checkbox" 
+                      name="morning" 
+                      checked={filters.morning}
+                      onChange={handleFilterChange}
+                    /> 
+                    Morning Classes
+                  </label>
+                  <label className="checkbox-label">
+                    <input 
+                      type="checkbox" 
+                      name="afternoon" 
+                      checked={filters.afternoon}
+                      onChange={handleFilterChange}
+                    /> 
+                    Afternoon Classes
+                  </label>
+                  <label className="checkbox-label">
+                    <input 
+                      type="checkbox" 
+                      name="evening" 
+                      checked={filters.evening}
+                      onChange={handleFilterChange}
+                    /> 
+                    Evening Classes
+                  </label>
+                  <label className="checkbox-label">
+                    <input 
+                      type="checkbox" 
+                      name="weekend" 
+                      checked={filters.weekend}
+                      onChange={handleFilterChange}
+                    /> 
+                    Weekend Classes
+                  </label>
+                </div>
+              </div>
+
+              <div className="filter-actions">
+                <button className="apply-filters-btn" onClick={applyFilters}>Apply Filters</button>
+                <button className="clear-filters-btn" onClick={clearFilters}>Clear All</button>
+              </div>
+            </aside>
+
+            {/* Results Area */}
+            <div className="results-area">
+              <div className="results-header">
+                <div className="results-count">
+                  <span>{schools.length} schools found</span>
+                </div>
+                <div className="sort-options">
+                  <label htmlFor="sort-select">Sort by:</label>
+                  <select 
+                    id="sort-select"
+                    value={sortBy}
+                    onChange={(e) => setSortBy(e.target.value)}
+                  >
+                    <option value="rating">Rating</option>
+                    <option value="reviews">Number of Reviews</option>
+                    <option value="price">Price: Low to High</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="school-listings">
+                {loading ? (
+                  <div className="loading-indicator">Loading schools...</div>
+                ) : schools.length > 0 ? (
+                  schools.map(school => (
+                    <div key={school.id} className="school-card">
+                      <div className="school-card-image">
+                        <img src={school.image_url || "/images/placeholder-school.jpg"} alt={school.name} />
+                      </div>
+                      <div className="school-card-content">
+                        <h3 className="school-name">{school.name}</h3>
+                        <div className="school-rating">
+                          {/* Star rating would go here */}
+                          <span>★★★★☆</span>
+                          <span className="reviews-count">({school.reviews_count || 0})</span>
+                          <span className="price">{school.price_level === 1 ? '$' : school.price_level === 2 ? '$$' : '$$$'}</span>
+                        </div>
+                        <p className="school-address">{school.address}, {school.city}, {school.state}</p>
+                        <div className="school-features">
+                          {school.has_gi && <span className="feature">Gi Training</span>}
+                          {school.has_nogi && <span className="feature">No-Gi</span>}
+                          {school.has_kids && <span className="feature">Kids Program</span>}
+                          {school.has_beginners && <span className="feature">Beginners</span>}
+                        </div>
+                        <Link href={`/schools/${school.id}`} className="view-details-btn">View Details</Link>
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <div className="no-results">
+                    <p>No schools found matching your criteria.</p>
+                    <p>Try adjusting your filters or <Link href="/add-school">add a school</Link>.</p>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Map Container - Placeholder for now */}
+            <div className="map-container">
+              <div className="map-placeholder">
+                <p>Map view coming soon</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </Layout>
   )
 }
