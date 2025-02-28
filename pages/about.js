@@ -61,60 +61,6 @@ export default function About() {
           </div>
         </div>
       </section>
-
-      <section className="featured-gyms-section">
-        <div className="container text-center">
-          <div className="section-header text-center">
-            <h2>Key Features</h2>
-            <p>What makes our platform unique</p>
-          </div>
-          <div className="featured-gyms-grid">
-            <div className="featured-gym-card">
-              <div className="gym-info">
-                <div className="gym-header">
-                  <div className="feature-icon">
-                    <svg viewBox="0 0 24 24" width="48" height="48" stroke="currentColor" fill="none" strokeWidth="1.5">
-                      <circle cx="11" cy="11" r="8" />
-                      <line x1="21" y1="21" x2="16.65" y2="16.65" />
-                    </svg>
-                  </div>
-                  <h3>Easy Search</h3>
-                </div>
-                <p>Find schools quickly using our intuitive search functionality</p>
-              </div>
-            </div>
-            <div className="featured-gym-card">
-              <div className="gym-info">
-                <div className="gym-header">
-                  <div className="feature-icon">
-                    <svg viewBox="0 0 24 24" width="48" height="48" stroke="currentColor" fill="none" strokeWidth="1.5">
-                      <circle cx="12" cy="12" r="10" />
-                      <line x1="12" y1="16" x2="12" y2="12" />
-                      <line x1="12" y1="8" x2="12.01" y2="8" />
-                    </svg>
-                  </div>
-                  <h3>Detailed Profiles</h3>
-                </div>
-                <p>Access comprehensive information about each school</p>
-              </div>
-            </div>
-            <div className="featured-gym-card">
-              <div className="gym-info">
-                <div className="gym-header">
-                  <div className="feature-icon">
-                    <svg viewBox="0 0 24 24" width="48" height="48" stroke="currentColor" fill="none" strokeWidth="1.5">
-                      <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
-                      <line x1="12" y1="18" x2="12.01" y2="18" />
-                    </svg>
-                  </div>
-                  <h3>Mobile Friendly</h3>
-                </div>
-                <p>Access our directory from any device, anywhere</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }
